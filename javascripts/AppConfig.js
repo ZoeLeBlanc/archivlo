@@ -26,27 +26,32 @@ app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG){
 
 app.config(function($routeProvider){
 	$routeProvider
-		.when('/', {
-			templateUrl: 'partials/auth.html',
-			controller: 'AuthCtrl'
-		})
 		.when('/auth', {
 			templateUrl: 'partials/auth.html',
 			controller: 'AuthCtrl'
 		})
-		.when('/boards/list', {
-			templateUrl: 'partials/board-list.html',
-			controller: 'BoardListCtrl',
+		.when('/', {
+			templateUrl: 'partials/landing-page.html',
+			controller: 'LandingPageCtrl'
+		})
+		.when('/home', {
+			templateUrl: 'partials/dashboard-page.html',
+			controller: 'DashboardPageCtrl'
 			resolve: {isAuth}
 		})
-		.when('/boards/new', {
-			templateUrl: 'partials/board-new.html',
-			controller: 'BoardNewCtrl',
+		.when('/projects/list', {
+			templateUrl: 'partials/project-list.html',
+			controller: 'ProjectListCtrl',
 			resolve: {isAuth}
 		})
-		.when('/boards/edit/:id', {
-			templateUrl: 'partials/board-edit.html',
-			controller: 'BoardEditCtrl',
+		.when('/projects/view/:id', {
+			templateUrl: 'partials/project-view.html',
+			controller: 'ProjectViewCtrl',
+			resolve: {isAuth}
+		})
+		.when('/projects/new', {
+			templateUrl: 'partials/project-new.html',
+			controller: 'ProjectNewCtrl',
 			resolve: {isAuth}
 		})
 		.when('/search', {
@@ -54,14 +59,14 @@ app.config(function($routeProvider){
 			controller: 'SearchCtrl',
 			resolve: {isAuth}
 		})
-		.when('/pins/list/:id', {
-			templateUrl: 'partials/pin-list.html',
-			controller: 'PinListCtrl',
+		.when('/annotations/list/:id', {
+			templateUrl: 'partials/annotation-list.html',
+			controller: 'AnnotationListCtrl',
 			resolve: {isAuth}
 		})
-		.when('/pins/view/:id', {
-			templateUrl: 'partials/pin-view.html',
-			controller: 'PinViewCtrl',
+		.when('/annotations/view/:id', {
+			templateUrl: 'partials/annotation-view.html',
+			controller: 'AnnotationViewCtrl',
 			resolve: {isAuth}
 		})
 		.when('/logout', {

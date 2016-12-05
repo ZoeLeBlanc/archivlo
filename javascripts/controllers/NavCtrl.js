@@ -6,8 +6,8 @@ app.controller("NavCtrl", function($scope, $location){
 		url:"#/logout"
 	},
 	{
-		name:"All Boards", 
-		url:"#/boards/list"
+		name:"Projects", 
+		url:"#/projects/list"
 	},
 	{
 		name:"Search", 
