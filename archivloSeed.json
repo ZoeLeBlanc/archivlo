@@ -33,28 +33,66 @@
 			"title": "library of congress",
 			"projectId": "project0",
 			"text": "",
-			"url": "",
+			"uri": "",
+			"html": "",
+			"incontext": "",
+			"json": "",
+			"tags": "",
+			"created": "",
+			"updated": "",
+			"user": "",
+			"references": "",
+			"group": "",
+			"id": "",
 			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
 		},
-		"anootation1":{
+		"annotation1":{
 			"title": "worldcat",
 			"projectId": "project1",
 			"text": "",
-			"url": "",
+			"uri": "",
+			"html": "",
+			"incontext": "",
+			"json": "",
+			"tags": "",
+			"created": "",
+			"updated": "",
+			"user": "",
+			"references": "",
+			"group": "",
+			"id": "",
 			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
 		},
-		"anootation2":{
+		"annotation2":{
 			"title": "harvard libraries",
 			"projectId": "project2",
 			"text": "",
-			"url": "",
+			"uri": "",
+			"html": "",
+			"incontext": "",
+			"json": "",
+			"tags": "",
+			"created": "",
+			"updated": "",
+			"user": "",
+			"references": "",
+			"group": "",
+			"id": "",
 			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
 		}
 	},
 	"users":{
 		"user0":{
 			"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
-			"username":"Zoe"
+			"username":"Zoe",
+			"hypothesisUsername": "zoeleblanc",
+			"hypothesisToken": "6879-1fd25d39c910a19c57d047d7086f32e7"
+		},
+		"user1":{
+			"uid":"oibnNd6kDWOqV6Rfxa7HgO9Pj1k2",
+			"username":"",
+			"hypothesisUsername": "opencontent",
+			"hypothesisToken": ""
 		}
 	}
 }

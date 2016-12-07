@@ -1,20 +1,42 @@
 "use strict";
-app.factory("HypothesisFactory", function($q, $http, HYPOTHESIS_KEY){
-	var getHypothesis = ()=>{
+app.factory("HypothesisFactory", function($q, $http, HYPOTHESIS_TOKEN){
+	var searchHypothesis = (userInput)=>{
 		return $q((resolve,reject)=>{
-			$http.get(`https://hypothes.is/api/`, {
+			$http.get(`https://hypothes.is/api/search?user=${userInput}`, {
 				headers: {
-					'Authorization': `${HYPOTHESIS_KEY}`
+					'Authorization': 'Bearer ' +HYPOTHESIS_TOKEN.Authorization
 				}
 			})
 			.success( (getHypothesisResponse)=>{
 				console.log("getHypothesisResponse", getHypothesisResponse);
-				resolve(getHypothesisResponse);
+				let HypothesisSearchResults = [];
+				Object.keys(getHypothesisResponse).forEach((key)=>{
+					// getHypothesisResponse[key].id = key;
+					HypothesisSearchResults.push(getHypothesisResponse[key]);
+				});
+				resolve(HypothesisSearchResults);
 			})
 			.error( (getHypothesisError)=>{
 				reject(getHypothesisError);
 			});
 		});
 	};
-	return {getHypothesis};
+	var getHypothesisJson = (oneAnnotation)=>{
+		return $q((resolve,reject)=>{
+			$http.get(`https://hypothes.is/api/annotations/${oneAnnotation.id}`, {
+				headers: {
+					'Authorization': 'Bearer ' +HYPOTHESIS_TOKEN.Authorization,
+					
+				}
+			})
+			.success( (getHypothesisJSONResponse)=>{
+				console.log("getHypothesisJSONResponse", getHypothesisJSONResponse);
+				resolve(getHypothesisJSONResponse);
+			})
+			.error( (getHypothesisJSONError)=>{
+				reject(getHypothesisJSONError);
+			});
+		});
+	};
+	return {searchHypothesis, getHypothesisJson};
 });

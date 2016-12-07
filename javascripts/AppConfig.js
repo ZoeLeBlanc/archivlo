@@ -10,6 +10,7 @@ let isAuth = (AuthFactory)=>{
 };
 app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG){
 	firebase.initializeApp(FIREBASE_CONFIG);
+	
 	$rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
 		let logged = AuthFactory.isAuthenticated();
 		let appTo;
@@ -24,7 +25,10 @@ app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG){
 	});
 });
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $httpProvider){
+	// $httpProvider.defaults.useXDomain = true;
+ //  	delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
 	$routeProvider
 		.when('/auth', {
 			templateUrl: 'partials/auth.html',
@@ -36,7 +40,7 @@ app.config(function($routeProvider){
 		})
 		.when('/home', {
 			templateUrl: 'partials/dashboard-page.html',
-			controller: 'DashboardPageCtrl'
+			controller: 'DashboardPageCtrl',
 			resolve: {isAuth}
 		})
 		.when('/projects/list', {
@@ -75,3 +79,4 @@ app.config(function($routeProvider){
 		})
 		.otherwise('/auth');
 });
+
