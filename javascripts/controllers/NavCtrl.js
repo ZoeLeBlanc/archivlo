@@ -2,10 +2,6 @@
 app.controller("NavCtrl", function($scope, $location){
 	$scope.navItems = [
 	{
-		name:"Logout", 
-		url:"#/logout"
-	},
-	{
 		name:"Projects", 
 		url:"#/projects/list"
 	},
@@ -14,4 +10,5 @@ app.controller("NavCtrl", function($scope, $location){
 		url:"#/search"
 	}
 ];
+  
 });

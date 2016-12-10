@@ -38,9 +38,9 @@ app.config(function($routeProvider, $httpProvider){
 			templateUrl: 'partials/landing-page.html',
 			controller: 'LandingPageCtrl'
 		})
-		.when('/home', {
-			templateUrl: 'partials/dashboard-page.html',
-			controller: 'DashboardPageCtrl',
+		.when('/settings', {
+			templateUrl: 'partials/user.html',
+			controller: 'UserCtrl',
 			resolve: {isAuth}
 		})
 		.when('/projects/list', {

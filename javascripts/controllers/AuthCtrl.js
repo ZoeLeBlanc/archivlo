@@ -16,6 +16,19 @@ app.controller("AuthCtrl", function($location, $scope, $rootScope, AuthFactory, 
 		$scope.loginContainer = false;
 		$scope.registerContainer = true;
 	};
+	let RegisterMeIn = (loginStuff)=>{
+		AuthFactory.authenticate(loginStuff).then( (loginResponse)=>{
+			console.log("loginResponse", loginResponse);
+			return UserFactory.getUser(loginResponse.uid);
+		}).then( (userCreds)=>{
+			console.log("userCreds", userCreds);
+			$rootScope.user = userCreds;
+			$scope.login = {};
+			$scope.register = {};
+			$location.url('/settings');
+
+		});
+	};
 	let logMeIn = (loginStuff)=>{
 		AuthFactory.authenticate(loginStuff).then( (loginResponse)=>{
 			console.log("loginResponse", loginResponse);
@@ -25,12 +38,12 @@ app.controller("AuthCtrl", function($location, $scope, $rootScope, AuthFactory, 
 			$rootScope.user = userCreds;
 			$scope.login = {};
 			$scope.register = {};
-			$location.url('/home');
+			$location.url('/projects/list');
 
 		});
 	};
 	let loginSetUser = {};
-	loginSetUser.email = "a@a.com";
+	loginSetUser.email = "c@a.com";
 	loginSetUser.password = "123456";
 	logMeIn(loginSetUser);
 	$scope.loginGoogleUser = ()=>{
@@ -54,7 +67,7 @@ app.controller("AuthCtrl", function($location, $scope, $rootScope, AuthFactory, 
 			registerNewUser.uid = registerResponse.uid;
 			return UserFactory.addUser(registerNewUser);
 		}).then( (registerComplete)=>{
-			logMeIn(registerNewUser);
+			RegisterMeIn(registerNewUser);
 		});
 	};
 	$scope.loginUser = function(loginNewUser){
