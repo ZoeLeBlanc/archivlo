@@ -2,18 +2,18 @@
 <!-- Tabs -->
   <div class="row"> 
     <ul tabs>
-      <li class="tab col s4 offset-s2">
+      <li class="tab col s4 offset-s2"><a href="#projects">Projects</a></li>
+      <li class="tab col s4 ">
       <a href="#latestActivity">Latest Activity</a></li>
-      <li class="tab col s4"><a href="#projects">Projects</a></li>
     </ul>
   </div> <!-- End of Tabs -->
   <!-- Fab -->
   <div class="fixed-action-btn horizontal"> 
-    <a tooltipped class="btn-floating btn-large orange lighten-3" data-position="top" data-delay="50" data-tooltip="Add a new project"><i class="large material-icons">menu</i>
+    <a tooltipped class="btn-floating btn-large orange lighten-3" href="#/projects/new" data-position="top" data-delay="50" data-tooltip="Add a new project"><i class="large material-icons">add</i>
     </a>
     <ul>
-      <li><a class="btn-floating deep-purple lighten-3"><i class="material-icons">publish</i></a></li>
-      <li><a href="#/projects/new" class="btn-floating blue lighten-3"><i class="material-icons">add</i></a></li>
+      <li><a class="btn-floating deep-purple lighten-3"><i class="material-icons">info</i></a></li>
+      <li><a class="btn-floating blue lighten-3"><i class="material-icons">add</i></a></li>
     </ul>
   </div> <!-- End of Fab -->
   <!-- Projects Container -->
@@ -21,7 +21,7 @@
     <div ng-repeat="project in projects">
       <div class="card blue-grey lighten-5 col s5 offset-s1">
         <div class="card-content white-text">
-          <a href="#/pins/list/{{project.id}}"><span class="card-title">{{project.title}}</span></a>
+          <a href="#/projects/view/{{project.id}}"><span class="card-title">{{project.title}}</span></a>
         </div>
         <div class="card-action">
           <a ng-href="#/projects/edit/{{project.id}}">Edit</a>

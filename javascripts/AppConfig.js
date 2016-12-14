@@ -58,6 +58,11 @@ app.config(function($routeProvider, $httpProvider){
 			controller: 'ProjectNewCtrl',
 			resolve: {isAuth}
 		})
+		.when('/projects/import/:id', {
+			templateUrl: 'partials/import.html',
+			controller: 'ImportCtrl',
+			resolve: {isAuth}
+		})
 		.when('/search', {
 			templateUrl: 'partials/search.html',
 			controller: 'SearchCtrl',

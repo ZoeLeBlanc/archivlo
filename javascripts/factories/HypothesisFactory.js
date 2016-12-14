@@ -2,7 +2,7 @@
 app.factory("HypothesisFactory", function($q, $http, HYPOTHESIS_TOKEN){
 	var searchHypothesis = (userInput)=>{
 		return $q((resolve,reject)=>{
-			$http.get(`https://hypothes.is/api/search?user=${userInput}`, {
+			$http.get(`https://hypothes.is/api/${userInput}`, {
 				headers: {
 					'Authorization': 'Bearer ' +HYPOTHESIS_TOKEN.Authorization
 				}

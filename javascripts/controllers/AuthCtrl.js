@@ -43,7 +43,7 @@ app.controller("AuthCtrl", function($location, $scope, $rootScope, AuthFactory, 
 		});
 	};
 	let loginSetUser = {};
-	loginSetUser.email = "c@a.com";
+	loginSetUser.email = "a@a.com";
 	loginSetUser.password = "123456";
 	logMeIn(loginSetUser);
 	$scope.loginGoogleUser = ()=>{
