@@ -20,8 +20,10 @@
   <div class="row" id="projects">
     <div ng-repeat="project in projects">
       <div class="card blue-grey lighten-5 col s5 offset-s1">
-        <div class="card-content white-text">
-          <a href="#/projects/view/{{project.id}}"><span class="card-title">{{project.title}}</span></a>
+        <div class="card-content">
+          <span class="card-title">
+            <a href="#/projects/view/{{project.id}}">{{project.title}}</a>
+          </span>
         </div>
         <div class="card-action">
           <a ng-href="#/projects/edit/{{project.id}}">Edit</a>
@@ -32,17 +34,19 @@
   </div> <!-- End of Projects -->
   <!-- Latest Activity -->
   <div class="row" id="latestActivity">
-    <ul class="collection with-header">
-      <li class="collection-header">
-        <h4>Latest Activity</h4>
-      </li>
-      <li class="collection-item" ng-repeat="annotation in annotationsArray">
-        <div class="row">
-          <p class="collections-title">{{annotation.title}}</p>
-          <p class="collections-content">{{annotation.updated | date: medium}}</p>
-        </div>
-      </li>
-    </ul>
+  <div class="col s6" style="height: 300px; width: 300px; overflow-y: scroll">
+      <ul class="collection with-header">
+        <li class="collection-header">
+          <h4>Latest Activity</h4>
+        </li>
+        <li class="collection-item" ng-repeat="annotation in annotationsArray">
+          <div class="row">
+            <p class="collections-title">{{annotation.title}}</p>
+            <p class="collections-content">{{annotation.updated | date: medium}}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div> <!-- End of latest Activity -->
 </div> <!-- End of container row -->
     

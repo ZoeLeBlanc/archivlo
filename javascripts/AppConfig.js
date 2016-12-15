@@ -8,7 +8,7 @@ let isAuth = (AuthFactory)=>{
 		}
 	});
 };
-app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG){
+app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG, editableOptions){
 	firebase.initializeApp(FIREBASE_CONFIG);
 	
 	$rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
@@ -23,6 +23,7 @@ app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG){
 			$location.path('/auth');
 		}
 	});
+	  editableOptions.theme = 'default';
 });
 
 app.config(function($routeProvider, $httpProvider){
@@ -61,6 +62,11 @@ app.config(function($routeProvider, $httpProvider){
 		.when('/projects/import/:id', {
 			templateUrl: 'partials/import.html',
 			controller: 'ImportCtrl',
+			resolve: {isAuth}
+		})
+		.when('/projects/edit/:id', {
+			templateUrl: 'partials/project-new.html',
+			controller: 'ProjectEditCtrl',
 			resolve: {isAuth}
 		})
 		.when('/search', {

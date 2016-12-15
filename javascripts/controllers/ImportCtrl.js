@@ -1,5 +1,5 @@
 "use strict";
-app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, ImportFactory, AnnotationFactory, HypothesisFactory){
+app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, $location, ImportFactory, AnnotationFactory, HypothesisFactory){
 	$scope.importHypothesis = true;
 	$scope.importPDF = false;
 	$scope.setImportHypothesis = function(){
@@ -55,6 +55,7 @@ app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, ImportFa
 		 		console.log("newAnnotation", newAnnotation);
 		 		AnnotationFactory.postNewAnnotation(newAnnotation).then( (postNewResponse)=>{
  					console.log("postNewResponse", postNewResponse);
+ 					$location.url('/projects/list');
  				});
 			});
 		};
