@@ -71,7 +71,7 @@ app.config(function($routeProvider, $httpProvider){
 		})
 		.when('/search', {
 			templateUrl: 'partials/search.html',
-			controller: 'SearchCtrl',
+			controller: 'SearchTextCtrl',
 			resolve: {isAuth}
 		})
 		.when('/annotations/list/:id', {

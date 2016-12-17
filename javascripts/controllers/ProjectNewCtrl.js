@@ -11,7 +11,7 @@ app.controller("ProjectNewCtrl", function($scope, $rootScope, $location, $window
 	 		console.log("postResponse", postResponse.name);
 	 		let link = {};
 	 		link.id = postResponse.name;
-	 		$window.location.assign('/projects/import/' + link.id);
+	 		$window.location.assign('#/projects/import/' + link.id);
 	 		$scope.newProject = {};
 	 	});
 	 };

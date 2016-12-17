@@ -5,8 +5,12 @@
   display: none; }
 
 #user-avatar {
-  border-radius: 99%;
   object-fit: cover; }
+
+.navbar-user {
+  width: 3em;
+  height: 3em;
+  margin-top: 0.5em; }
 
 .btn-upload {
   position: relative;
