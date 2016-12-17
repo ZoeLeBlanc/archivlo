@@ -1,0 +1,46 @@
+Object
+|
+rows
+|
+Object
+|
+created
+|
+document - title - 0
+|
+group
+|
+id
+|
+links-html
+	- incontext
+	- json
+|
+permissions - admin - 0
+			- delete - 0
+			- read - 0
+			- update - 0
+|
+tags - 0
+|
+target - 0 - selector -0 -endcontainer
+						 -endOffset
+						 -startContainer
+						 -startOffset
+						 -type
+					  -1 -end
+					  	 -start
+					  	 -type
+					  -2 -exact
+					  	 -prefix
+					  	 -suffix
+					  	 -type
+			- source
+|
+text
+|
+updated
+|
+uri
+|
+user

@@ -1,0 +1,30 @@
+<div class="row">
+	<div class="row">
+		<div class="card col s10 offset-s1 blue-grey lighten-5">
+			<div class="input-field col s8">
+				<input type="text" id="search" ng-model="searchTerm" ng-keyup="$event.keyCode === 13 && searchData(searchTerm)">
+				<label for="search">Enter any search term</label>
+			</div>
+				 <button class="waves-effect waves-light btn indigo lighten-1 col s4 vertical-align" ng-click="searchRecords(searchTerm)" style="margin-top: 1em;">Search Your Archival Records</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col s12" ng-show="filtered.length">
+			<div ng-repeat="item in filtered track by $index">
+				<div class="card blue-grey lighten-5 col s8 offset-s2">
+			        <div class="card-content">	
+	          		 	<h4 class="card-title"><a ng-href="#/projects/view/{{item.id}}"> Title: {{item.title}}</a></h4>
+
+	          		 	<div class="card-action">
+		          		<p ng-show="item.text.length">Text: {{item.text}}</p>
+		          		<p ng-show="item.tags.length">Tags: {{item.tags}}</p>
+		          		<a ng-show="item.links.html.length" href="{{item.links.html}}">Link: {{item.html}}</a>
+		          		<p ng-show="item.user.length">User: {{item.user}}</p>
+		          		<p ng-show="item.group.length">Group: {{item.group}}</p>
+	          		</div>
+	          	</div>
+			</div>
+		</div>
+	</div>
+</div> <!-- End of containing row -->

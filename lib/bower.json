@@ -12,6 +12,9 @@
     "tests"
   ],
   "dependencies": {
-    "angular-route": "^1.5.9"
+    "angular-route": "^1.5.9",
+    "angular-upload": "^1.0.12",
+    "angular-dragdrop": "^1.0.13",
+    "angular-google-chart": "^0.1.0"
   }
 }

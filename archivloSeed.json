@@ -1,0 +1,101 @@
+{
+	"projects":{
+		"project0":{
+	    	"title": "Nasser and The Philosophy of the Revolution",
+	    	"description": "Collections that mention Nasser",
+	    	"keywords": "Nasser, Egypt, History, 20th Century",
+	    	"dateCreated": "",
+	    	"dateUpdated": "",
+	    	"private": true,
+	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+    	},
+    	"project1":{
+	    	"title": "Missionaries in the Middle East",
+	    	"description": "Collections of missionary archives",
+	    	"dateCreated": "",
+	    	"dateUpdated": "",
+	    	"keywords": "Missionaries, Middle East, History",
+	    	"private": false,
+	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+    	},
+    	"project2":{
+	    	"title": "Cairo in the 1960s",
+	    	"description": "Collections of revolutionaries",
+	    	"dateCreated": "",
+	    	"dateUpdated": "",
+	    	"keywords": "United Arab Republic, Cairo, 1960s",
+	    	"private": true,
+	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+    	}
+	},
+	"annotations":{
+		"annotation0":{
+			"title": "library of congress",
+			"projectId": "project0",
+			"text": "",
+			"uri": "",
+			"html": "",
+			"incontext": "",
+			"json": "",
+			"tags": "",
+			"created": "",
+			"updated": "",
+			"user": "",
+			"references": "",
+			"group": "",
+			"id": "",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		},
+		"annotation1":{
+			"title": "worldcat",
+			"projectId": "project1",
+			"text": "",
+			"uri": "",
+			"html": "",
+			"incontext": "",
+			"json": "",
+			"tags": "",
+			"created": "",
+			"updated": "",
+			"user": "",
+			"references": "",
+			"group": "",
+			"id": "",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		},
+		"annotation2":{
+			"title": "harvard libraries",
+			"projectId": "project2",
+			"text": "",
+			"uri": "",
+			"html": "",
+			"incontext": "",
+			"json": "",
+			"tags": "",
+			"created": "",
+			"updated": "",
+			"user": "",
+			"references": "",
+			"group": "",
+			"id": "",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		}
+	},
+	"users":{
+		"user0":{
+			"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
+			"username":"Zoe",
+			"hypothesisUsername": "zoeleblanc",
+			"hypothesisToken": "6879-1fd25d39c910a19c57d047d7086f32e7",
+			"userAvatar": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?dpr=2&auto=format&fit=crop&w=1500&h=1425&q=80&cs=tinysrgb&crop="
+		},
+		"user1":{
+			"uid":"oibnNd6kDWOqV6Rfxa7HgO9Pj1k2",
+			"username":"",
+			"hypothesisUsername": "opencontent",
+			"hypothesisToken": ""
+			,
+			"userAvatar": ""
+		}
+	}
+}

@@ -1,23 +1,21 @@
 #dropdown {
-	z-index: 1;
-}
+  z-index: 1; }
+
 #sidenav-overlay {
-	display:none;
-}
+  display: none; }
+
 #user-avatar {
-	// border-radius: 99%;
-  object-fit: cover;
-}
+  object-fit: cover; }
+
 .navbar-user {
   width: 3em;
   height: 3em;
-  margin-top: 0.5em;
-}
-// Button upload styles
+  margin-top: 0.5em; }
+
 .btn-upload {
   position: relative;
-  overflow: hidden;
-}
+  overflow: hidden; }
+
 .btn-upload input {
   position: absolute;
   top: 0;
@@ -31,13 +29,14 @@
   -o-transform: translate(-300px, 0) scale(4);
   font-size: 23px;
   direction: ltr;
-  cursor: pointer;
-}
+  cursor: pointer; }
+
 * html .btn-upload {
   line-height: 24px;
-  margin: 1px -3px 0 0;
-}
+  margin: 1px -3px 0 0; }
+
 * + html .btn-upload {
   padding: 2px 15px;
-  margin: 1px 0 0 0;
-}
+  margin: 1px 0 0 0; }
+
+/*# sourceMappingURL=main.css.map */

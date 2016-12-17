@@ -1,20 +1,30 @@
 <div ng-controller="NavCtrl">
     <div class="navbar-fixed">
-        <nav>
+        <nav class="indigo lighten-1">
           <div class="nav wrapper">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <a href="#!" class="brand-logo center">Pinheads</a>
-            
+            <a href="#!" class="brand-logo center">Archivlo</a>
+            <a href="#" data-activates="nav-mobile" class="button-collapse top-nav" data-sidenav="left" data-menuwidth="300"  data-closeonclick="true">
+            <i class="material-icons">menu</i></a>
             <!-- normal navigation -->
-            <ul class="right hide-on-med-and-down" ng-repeat="navItem in navItems" ng-show="user">
-                <li><a href="{{navItem.url}}">{{navItem.name}}</a></li>
+            <ul class="right hide-on-med-and-down" ng-show="user">
+                <li><a href="#/search">Search</a></li>
+                <li><a href="#/projects/list">Projects</a></li>
+                <li><a class="dropdown-button" href="#!" data-activates="dropdown" dropdown>User<i class="material-icons right">arrow_drop_down</i></a></li>
             </ul>  
-            <!-- Side navigation  -->
-            <ul class="side-nav" id="nav-mobile" ng-repeat="navItem in navItems" ng-show="user">
-                <li><a href="{{navItem.url}}">{{navItem.name}}</a></li>
+            <!-- dropdown navigation -->
+            <ul id='dropdown' class='dropdown-content' ng-show="user">
+                <li><a href="#/logout">Logout</a></li>
+                <li><a href="#/settings">Settings</a></li>
             </ul>
-            <a href="#" data-activates="nav-mobile" data-sidenav="left" data-menuwidth="300" data-closeonclick="false"><i class="material-icons">menu</i></a>
+            <!-- Side navigation  -->
+            <ul class="side-nav" id="nav-mobile" ng-show="user">
+                <li><a href="#/search">Search</a></li>
+                <li><a href="#/projects/list">Projects</a></li>
+            </ul>
+            
           </div><!-- /.navwrapper -->
         </nav>
     </div>
-</div>
+
+</div> 

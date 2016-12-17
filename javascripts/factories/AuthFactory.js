@@ -43,7 +43,38 @@ app.factory("AuthFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
         });
     });
   };
-
+//Firebase: Let change email address
+  let changeEmail = (user) => {
+    return $q((resolve, reject) => {
+      firebase.auth().changeEmail({
+        oldEmail: user.email, 
+        newEmail: user.newEmail,
+        password: user.password
+      })
+        .then((authData) =>{
+          resolve(authData);
+        })
+        .catch((error)=>{
+          reject(error);
+        });
+    });
+  };
+  //Firebase: Let change password
+  let changePassword = (user) => {
+    return $q((resolve, reject) => {
+      firebase.auth().changePassword({
+        email: user.email, 
+        oldPassword: user.oldPassword,
+        newPassword: user.newPassword
+      })
+        .then((authData) =>{
+          resolve(authData);
+        })
+        .catch((error)=>{
+          reject(error);
+        });
+    });
+  };
 //Firebase: GOOGLE - Use input credentials to authenticate user.
   let authenticateGoogle = () => {
     return $q((resolve, reject) => {
@@ -60,5 +91,5 @@ app.factory("AuthFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
     });
   };
 
-  return {isAuthenticated:isAuthenticated, getUser:getUser, logout:logout, registerWithEmail:registerWithEmail, authenticate:authenticate, authenticateGoogle: authenticateGoogle};
+  return {isAuthenticated, getUser, logout, registerWithEmail, authenticate, authenticateGoogle, changeEmail, changePassword};
 });

@@ -8,8 +8,9 @@ let isAuth = (AuthFactory)=>{
 		}
 	});
 };
-app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG){
+app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG, editableOptions){
 	firebase.initializeApp(FIREBASE_CONFIG);
+	
 	$rootScope.$on('$routeChangeStart', function(event, currRoute, prevRoute){
 		let logged = AuthFactory.isAuthenticated();
 		let appTo;
@@ -22,46 +23,65 @@ app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG){
 			$location.path('/auth');
 		}
 	});
+	  editableOptions.theme = 'default';
 });
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $httpProvider){
+	// $httpProvider.defaults.useXDomain = true;
+ //  	delete $httpProvider.defaults.headers.common['X-Requested-With'];
+
 	$routeProvider
-		.when('/', {
-			templateUrl: 'partials/auth.html',
-			controller: 'AuthCtrl'
-		})
 		.when('/auth', {
 			templateUrl: 'partials/auth.html',
 			controller: 'AuthCtrl'
 		})
-		.when('/boards/list', {
-			templateUrl: 'partials/board-list.html',
-			controller: 'BoardListCtrl',
+		.when('/', {
+			templateUrl: 'partials/landing-page.html',
+			controller: 'LandingPageCtrl'
+		})
+		.when('/settings', {
+			templateUrl: 'partials/user.html',
+			controller: 'UserCtrl',
 			resolve: {isAuth}
 		})
-		.when('/boards/new', {
-			templateUrl: 'partials/board-new.html',
-			controller: 'BoardNewCtrl',
+		.when('/projects/list', {
+			templateUrl: 'partials/project-list.html',
+			controller: 'ProjectListCtrl',
 			resolve: {isAuth}
 		})
-		.when('/boards/edit/:id', {
-			templateUrl: 'partials/board-edit.html',
-			controller: 'BoardEditCtrl',
+		.when('/projects/view/:id', {
+			templateUrl: 'partials/project-view.html',
+			controller: 'ProjectViewCtrl',
+			resolve: {isAuth}
+		})
+		.when('/projects/new', {
+			templateUrl: 'partials/project-new.html',
+			controller: 'ProjectNewCtrl',
+			resolve: {isAuth}
+		})
+		.when('/projects/import/:id', {
+			templateUrl: 'partials/import.html',
+			controller: 'ImportCtrl',
+			resolve: {isAuth}
+		})
+		.when('/projects/edit/:id', {
+			templateUrl: 'partials/project-new.html',
+			controller: 'ProjectEditCtrl',
 			resolve: {isAuth}
 		})
 		.when('/search', {
 			templateUrl: 'partials/search.html',
-			controller: 'SearchCtrl',
+			controller: 'SearchTextCtrl',
 			resolve: {isAuth}
 		})
-		.when('/pins/list/:id', {
-			templateUrl: 'partials/pin-list.html',
-			controller: 'PinListCtrl',
+		.when('/annotations/list/:id', {
+			templateUrl: 'partials/annotation-list.html',
+			controller: 'AnnotationListCtrl',
 			resolve: {isAuth}
 		})
-		.when('/pins/view/:id', {
-			templateUrl: 'partials/pin-view.html',
-			controller: 'PinViewCtrl',
+		.when('/annotations/view/:id', {
+			templateUrl: 'partials/annotation-view.html',
+			controller: 'AnnotationViewCtrl',
 			resolve: {isAuth}
 		})
 		.when('/logout', {
@@ -70,3 +90,4 @@ app.config(function($routeProvider){
 		})
 		.otherwise('/auth');
 });
+

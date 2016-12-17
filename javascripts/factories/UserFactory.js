@@ -6,11 +6,29 @@ app.factory("UserFactory", function($q, $http, FIREBASE_CONFIG){
 			$http.post(`${FIREBASE_CONFIG.databaseURL}/users.json`, 
 				JSON.stringify({
 					uid: authData.uid,
-					username: authData.username
+					username: authData.username,
+					hypothesisUsername: authData.hypothesisUsername,
+					hypothesisToken: authData.hypothesisToken
 				})
 			)
 			.success( (addUserResponse)=>{
 				resolve(addUserResponse);
+			})
+			.error( (addUserError)=>{
+				reject(addUserError);
+			});
+		});
+	};
+	let updateUser = (updateData,userId)=>{
+		return $q((resolve,reject)=>{
+			$http.patch(`${FIREBASE_CONFIG.databaseURL}/users/${userId}.json`, 
+				JSON.stringify({
+					hypothesisUsername: updateData.hypothesisUsername,
+					hypothesisToken: updateData.hypothesisToken
+				})
+			)
+			.success( (updateUserResponse)=>{
+				resolve(updateUserResponse);
 			})
 			.error( (addUserError)=>{
 				reject(addUserError);
@@ -33,5 +51,5 @@ app.factory("UserFactory", function($q, $http, FIREBASE_CONFIG){
 		});
 
 	};
-	return {addUser:addUser, getUser:getUser};
+	return {addUser, getUser, updateUser};
 });
