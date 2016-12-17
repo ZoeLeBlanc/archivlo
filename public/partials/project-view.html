@@ -1,0 +1,70 @@
+<div class="row">
+	<div class="row">
+		<div ng-repeat="project in projectsArray | filter: {id: clickProjectId}" class="col s8  center-align">
+			<h4>Project Title: {{project.title}}</h4>
+		</div>
+	</div>
+	<!-- Unedited Annotations -->
+	<div id="uneditedAnnotations" class="row" ng-show="!editVersion">
+			<!-- Fab -->
+	  	<div class="fixed-action-btn horizontal"> 
+	    <a tooltipped class="btn-floating btn-large orange lighten-3" data-position="top" data-delay="50" data-tooltip="Update annotations"><i class="large material-icons">menu</i>
+	    </a>
+	    <ul>
+	    <li><a tooltipped class="btn-floating indigo lighten-3" data-position="top" data-delay="50" data-tooltip="Add annotations" ng-href="#/projects/import/{{clickProjectId}}"><i class="material-icons" >add</i></a></li>
+	    <li><a tooltipped class="btn-floating deep-purple lighten-3" data-position="top" data-delay="50" data-tooltip="Edit selected annotations" ng-click="editAnnotation()"><i class="material-icons" >edit</i></a></li>
+	    <li><a tooltipped class="btn-floating blue lighten-3" data-position="top" data-delay="50" data-tooltip="Delete selected annotations" ng-click="deleteAnnotation()"><i class="material-icons">delete</i></a></li>
+	    </ul>
+	  	</div> <!-- End of Fab -->
+		<div id="Annotations">
+		    <div ng-show="annotationsArray.length">
+			    <div ng-repeat="annotation in annotationsArray | filter: {projectId: clickProjectId}">
+			      	<div class="card blue-grey lighten-5 col s8 offset-s2">
+				        <div class="card-content">
+				        	
+		          			<h4 class="card-title">Title: {{annotation.title || 'empty'}}</h4>
+		          			<div class="card-action">
+		          			<p ng-show="annotation.text.length">Text: {{annotation.text}}</p>
+		          			<p ng-show="annotation.tags.length">Tags: {{annotation.tags}}</p>
+		          			<a ng-show="annotation.links.html.length" href="{{annotation.links.html}}">Link: {{annotation.html}}</a>
+		          			<p ng-show="annotation.user.length">User: {{annotation.user}}</p>
+		          			<p ng-show="annotation.group.length">Group: {{annotation.group}}</p>
+		          			<input type="checkbox" id="{{annotation.id}}" ng-model="annotation.selected"/>
+	      					<label for="{{annotation.id}}">Select Annotation</label>
+		          			</div>
+		        		</div>
+			      	</div>
+			    </div>
+		    </div>
+	  	</div>
+	</div> <!-- End of unedited div -->
+<!-- 	Beginning of Edited div
+ -->	<div id="editedAnnotations" class="row" ng-show="editVersion">
+			<!-- Fab -->
+	  	<div class="fixed-action-btn horizontal"> 
+	    <a tooltipped class="btn-floating btn-large orange lighten-3" data-position="top" data-delay="50" data-tooltip="Save edited annotations" ng-click="saveEditedAnnotations()"><i class="large material-icons">add</i>
+	    </a>
+	  	</div> <!-- End of Fab -->
+		<div id="Annotations">
+		    <div ng-show="selectedEditAnnotations.length">
+			    <div ng-repeat="annotation in selectedEditAnnotations | filter: {projectId: clickProjectId}">
+			      	<div class="card blue-grey lighten-5 col s8 offset-s2">
+				        <div class="card-content">
+				        	
+		          			<h4 class="card-title" editable-text="annotation.title">Title: {{annotation.title || 'empty'}}</h4>
+		          			<div class="card-action">
+		          			<p editable-text="annotation.text">Text: {{annotation.text || 'empty'}}</p>
+		          			<p editable-text="annotation.tags">Tags: {{annotation.tags || 'empty'}}</p>
+		          			<a href="{{annotation.links.html}}" editable-text="annotation.html">Link: {{annotation.html || 'empty'}}</a>
+		          			<p editable-text="annotation.user">User: {{annotation.user || 'empty'}}</p>
+		          			<p editable-text="annotation.group">Group: {{annotation.group || 'empty'}}</p>
+		          			<input type="checkbox" id="{{annotation.id}}" ng-model="annotation.selected"/>
+	      					<label for="{{annotation.id}}">Select Annotation</label>
+		          			</div>
+		        		</div>
+			      	</div>
+			    </div>
+		    </div>
+	  	</div>
+	</div> <!-- End of edited div -->
+</div>
