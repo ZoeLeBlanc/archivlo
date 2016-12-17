@@ -1,0 +1,40 @@
+<div class="row">
+	<div class="row">
+		<h1 class="center-align">New Project</h1>
+	</div>
+	<div class="row col s10 offset-s1">
+		<label>Project Title</label>
+		<div class="row">
+			<input class="input-field col s10 offset-s1" type="text" placeholder="Project Title" ng-model="createProject.title" required autofocus>
+		</div>
+		<label>Project Description</label>
+		<div class="row">
+			<input class="input-field col s10 offset-s1" type="text" placeholder="Project Description" ng-model="createProject.description" required>
+		</div>
+		<label>Project Keywords</label>
+		<div class="row">
+			<input class="input-field col s10 offset-s1" placeholder="List keywords comma separated. Eg. History, modern, 20th Century..." ng-model="createProject.keywords" required>
+		</div>
+		<!-- <label>Project Keywords</label>
+		<div class="row">
+			<div class="chips">
+				<input class="input-field col s10 offset-s1" ng-model="createProject.keywords" required>
+			</div>
+			
+		</div> -->
+		<label>Public/Private Settings</label>
+		<div class="row">
+			<div class="switch">
+			    <label>
+			      Public
+			      <input type="checkbox" ng-model="createProject.private">
+			      <span class="lever"></span>
+			      Private
+			    </label>
+			</div>
+			 <a class="btn-floating btn-large waves-effect waves-light indigo lighten-1 right-align" ng-click="createNewProject(createProject)"><i class="material-icons">arrow_forward</i></a>
+		</div>
+		
+	</div>
+	
+</div>
