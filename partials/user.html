@@ -1,43 +1,39 @@
 <div class="row">
   <div class="row">
-    <div class="card col s3 offset-s1 blue-grey lighten-5">
+    <div class="card horizontal col s12 blue-grey lighten-5 hide-on-med-and-down">
       <div class="card-image">
         <img ng-show="user.userAvatar" id="user-avatar" src="{{user.userAvatar}}" alt="user-avatar">
-        <span class="card-title">
-          <h2>{{user.username}}'s Dashboard</h2>
-        </span>
-        <p>Date Created: March 1, 2016</p> 
+        <button ng-show="!user.userAvatar" class="col s2 waves-effect waves-light btn indigo lighten-1" id="noAvatar">Upload Image</button>
       </div>
-         <!--  <button ng-show="!user.userAvatar" class="col s2 waves-effect waves-light btn indigo lighten-1" id="noAvatar">Upload Image</button> -->
-        <div class="row card-content">
-          <div class="col s8 offset-s1">
+      <div class="card-stacked">
+        <span class="card-title center-align">
+          <h4>{{user.username}}'s Dashboard</h4>
+        </span>
+        <p class="center-align">Date Created: March 1, 2016</p> 
+        <div class="card-content">
+          <div class="col s10 offset-s1">
             <label>Username</label>
             <div class="row">
-              <input type="text" class="input-field col s10 offset-s1" ng-model="user.username" required>
+              <input type="text" class="input-field" ng-model="user.username" required>
             </div>
-            <!-- <label>Email</label>
+            <label>Email</label>
             <div class="row">
-              <input id="login-email" type="email" class="input-field col s10 offset-s1" ng-model="user.email" required>   
+              <input id="login-email" type="email" class="input-field" ng-model="user.email" required>   
             </div>
-            <label>Password</label>
-            <div class="row"> 
-              <input type="text" class="input-field col s10 offset-s1" ng-model="user.password" required>
-            </div> -->
-          <!-- </div> -->
-          <!-- <div class="col s4 offset-s2"> -->
             <label>Hypothesis Username</label>
             <div class="row">
-              <input type="text" class="input-field col s10 offset-s1" ng-model="user.hypothesisUsername" required>  
+              <input type="text" class="input-field" ng-model="user.hypothesisUsername" required>  
             </div>
             <label>Hypothesis Token</label>
             <div class="row">
-              <input type="text" class="input-field col s10 offset-s1" ng-model="user.hypothesisToken" required>
+              <input type="text" class="input-field" ng-model="user.hypothesisToken" required>
             </div>
-            <div class="row">
+            <div class="card-action">
               <button class="waves-effect waves-light btn indigo lighten-1">Save Settings</button>
             </div>
           </div>
         </div>
+      </div>
     </div>
     <div class="col s6 offset-s1" style="height: 600px; overflow-y: scroll">
         <ul class="collection with-header">

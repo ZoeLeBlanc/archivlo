@@ -7,6 +7,12 @@
 #user-avatar {
   object-fit: cover; }
 
+.card.horizontal .card-image {
+  max-width: 60%; }
+
+.container {
+  width: 80%; }
+
 .navbar-user {
   width: 3em;
   height: 3em;

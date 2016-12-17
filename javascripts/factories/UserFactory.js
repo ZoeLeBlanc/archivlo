@@ -35,7 +35,7 @@ app.factory("UserFactory", function($q, $http, FIREBASE_CONFIG){
 			});
 		});
 	};
-	let getUser = (userId)=>{
+	let getUser = (userId, userEmail)=>{
 		return $q((resolve,reject)=>{
 			$http.get(`${FIREBASE_CONFIG.databaseURL}/users.json?orderBy="uid"&equalTo="${userId}"`)
 			.success((userObject)=>{
@@ -43,6 +43,8 @@ app.factory("UserFactory", function($q, $http, FIREBASE_CONFIG){
 				Object.keys(userObject).forEach( (key)=>{
 					users.push(userObject[key]);
 				});
+				console.log(userEmail);
+				users[0].email = userEmail;
 				resolve(users[0]);
 			})
 			.error((getUserError)=>{

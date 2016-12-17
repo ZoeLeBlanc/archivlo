@@ -10,7 +10,8 @@
             <ul class="right hide-on-med-and-down" ng-show="user">
                 <li><a href="#/search">Search</a></li>
                 <li><a href="#/projects/list">Projects</a></li>
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown" dropdown>User<i class="material-icons right">arrow_drop_down</i></a></li>
+                <!-- <li><a class="dropdown-button" href="#!" data-activates="dropdown" dropdown>User<i class="material-icons right">arrow_drop_down</i></a></li> -->
+                <li><a href="#" data-activates="nav-mobile" class="button-collapse" data-sidenav="left" data-menuwidth="300"  data-closeonclick="true" style="display: inherit;">User</a></li>
             </ul>  
             <!-- dropdown navigation -->
             <ul id='dropdown' class='dropdown-content' ng-show="user">
@@ -19,8 +20,21 @@
             </ul>
             <!-- Side navigation  -->
             <ul class="side-nav" id="nav-mobile" ng-show="user">
-                <li><a href="#/search">Search</a></li>
-                <li><a href="#/projects/list">Projects</a></li>
+                <li>
+                    <div class="userView">
+                        <div class="background">
+                            <img src="https://images.unsplash.com/photo-1445112098124-3e76dd67983c?dpr=2&auto=format&fit=crop&w=1500&h=1004&q=80&cs=tinysrgb&crop=">
+                        </div>
+                        <a href="#/settings"><img class="circle" src="{{user.userAvatar}}"></a>
+                        <a href="#/settings"><span class="white-text name">{{user.username}}</span></a>
+                        <a href="#/settings"><span class="white-text email">{{user.email}}</span></a>
+                    </div>
+                </li>
+                    
+                <li><a href="#/search"><i class="material-icons">search</i>Search</a></li>
+                <li><a href="#/projects/list"><i class="material-icons">menu</i>Projects</a></li>
+                <li><div class="divider"></div></li>
+                <li><a class="waves-effect" href="#/logout">Logout</a></li>
             </ul>
             
           </div><!-- /.navwrapper -->

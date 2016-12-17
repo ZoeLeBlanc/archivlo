@@ -1,12 +1,6 @@
 "use strict";
 app.controller("SearchTextCtrl", function($scope, $rootScope, $location, ProjectFactory, AnnotationFactory){
 	
-	$scope.searchData = (event)=>{
-		var keyCode = event.which || event.keyCode;
-	    if (keyCode === 13) {
-	        console.log("search", $scope.searchTerm);
-	    }
-	};
 	$scope.searchRecords = (searchTerm)=>{
 		console.log("search",searchTerm);
 		$scope.filtered = [];
@@ -17,7 +11,7 @@ app.controller("SearchTextCtrl", function($scope, $rootScope, $location, Project
 					console.log(value);
 					$scope.filtered.push(proj);
 				}
-				
+				console.log($scope.filtered);
 			});
 		});
 	};

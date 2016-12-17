@@ -53,11 +53,11 @@
 				        	
 		          			<h4 class="card-title" editable-text="annotation.title">Title: {{annotation.title || 'empty'}}</h4>
 		          			<div class="card-action">
-		          			<p ng-show="annotation.text.length" editable-text="annotation.text">Text: {{annotation.text || 'empty'}}</p>
-		          			<p ng-show="annotation.tags.length" editable-text="annotation.tags">Tags: {{annotation.tags || 'empty'}}</p>
-		          			<a ng-show="annotation.links.html.length" href="{{annotation.links.html}}" editable-text="annotation.html">Link: {{annotation.html || 'empty'}}</a>
-		          			<p ng-show="annotation.user.length" editable-text="annotation.user">User: {{annotation.user || 'empty'}}</p>
-		          			<p ng-show="annotation.group.length" editable-text="annotation.group">Group: {{annotation.group || 'empty'}}</p>
+		          			<p editable-text="annotation.text">Text: {{annotation.text || 'empty'}}</p>
+		          			<p editable-text="annotation.tags">Tags: {{annotation.tags || 'empty'}}</p>
+		          			<a href="{{annotation.links.html}}" editable-text="annotation.html">Link: {{annotation.html || 'empty'}}</a>
+		          			<p editable-text="annotation.user">User: {{annotation.user || 'empty'}}</p>
+		          			<p editable-text="annotation.group">Group: {{annotation.group || 'empty'}}</p>
 		          			<input type="checkbox" id="{{annotation.id}}" ng-model="annotation.selected"/>
 	      					<label for="{{annotation.id}}">Select Annotation</label>
 		          			</div>
