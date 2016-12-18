@@ -1,0 +1,15 @@
+{
+  "rules": {
+    ".read": "true",
+    ".write": "true",
+    "projects": {
+      ".indexOn": "uid"
+    },
+    "users": {
+      ".indexOn": "uid"
+    },
+    "annotations": {
+      ".indexOn": "uid"
+    }
+  }
+}
