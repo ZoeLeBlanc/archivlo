@@ -3,9 +3,9 @@ app.controller("UserCtrl", function($scope, $rootScope, UserFactory, AnnotationF
 	console.log($rootScope.user.userAvatar);
 	let updatedUser = {};
 	let userId;
-	UserFactory.updateUser(updatedUser, userId).then( (userResponse)=>{
-		console.log("update Response", userResponse);
-	});
+	// UserFactory.updateUser(updatedUser, userId).then( (userResponse)=>{
+	// 	console.log("update Response", userResponse);
+	// });
  	
 
  	var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];

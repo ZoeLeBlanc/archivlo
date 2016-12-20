@@ -53,5 +53,8 @@ app.factory("UserFactory", function($q, $http, FIREBASE_CONFIG){
 		});
 
 	};
+	let userUploadProfile = (userId, imageReference)=>{
+
+	};
 	return {addUser, getUser, updateUser};
 });

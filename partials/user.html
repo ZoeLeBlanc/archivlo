@@ -1,13 +1,15 @@
 <div class="row">
+
   <div class="row">
     <div class="card horizontal col s12 blue-grey lighten-5 hide-on-med-and-down">
       <div class="card-image">
         <img ng-show="user.userAvatar" id="user-avatar" src="{{user.userAvatar}}" alt="user-avatar">
+
         <button ng-show="!user.userAvatar" class="col s2 waves-effect waves-light btn indigo lighten-1" id="noAvatar">Upload Image</button>
       </div>
       <div class="card-stacked">
         <span class="card-title center-align">
-          <h4>{{user.username}}'s Dashboard</h4>
+          <h4><i class="material-icons">search</i> {{user.username}}'s Archivlo Settings</h4>
         </span>
         <p class="center-align">Date Created: March 1, 2016</p> 
         <div class="card-content">
@@ -35,23 +37,6 @@
         </div>
       </div>
     </div>
-    <div class="col s6 offset-s1" style="height: 600px; overflow-y: scroll">
-        <ul class="collection with-header">
-          <li class="collection-header">
-            <h4>Latest Activity</h4>
-          </li>
-          <li class="collection-item" ng-repeat="annotation in annotationsArray">
-            <div class="row">
-              <p class="collections-title">{{annotation.title}}</p>
-              <p class="collections-content">{{annotation.updated | date: medium}}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
-  </div>
-  <div class="row">
-    <div google-chart chart="myChartObject" style="height:450px; width:100%;">
-    </div>
-  </div>    
+       
 </div>
 	      
