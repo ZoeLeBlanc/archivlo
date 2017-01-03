@@ -1,6 +1,13 @@
 #dropdown {
   z-index: 1; }
 
+.modal-overlay {
+  width: 100% !important;
+  height: 100vh !important;
+  background-color: black !important;
+  position: fixed !important;
+  top: 0 !important; }
+
 #sidenav-overlay {
   display: none; }
 

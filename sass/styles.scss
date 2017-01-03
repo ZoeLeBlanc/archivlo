@@ -1,6 +1,20 @@
 #dropdown {
 	z-index: 1;
 }
+.modal-overlay {
+  width: 100% !important;
+  height: 100vh !important;
+  background-color: black !important;
+  position: fixed !important;
+  top: 0 !important;
+}
+.card {
+  // background: #6190E8; /* fallback for old browsers */
+// background: -webkit-linear-gradient(to left, #6190E8 , #A7BFE8); /* Chrome 10-25, Safari 5.1-6 */
+// background: linear-gradient(to left, #6190E8 , #A7BFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        
+}
+
 #sidenav-overlay {
 	display:none;
 }

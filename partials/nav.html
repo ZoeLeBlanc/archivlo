@@ -15,8 +15,7 @@
             </ul>  
             <!-- dropdown navigation -->
             <ul id='dropdown' class='dropdown-content' ng-show="user">
-                <li><a href="#/logout">Logout</a></li>
-                <li><a href="#/settings">Settings</a></li>
+                <li><a href="#/latestActivity">LatestActivity</a></li>
             </ul>
             <!-- Side navigation  -->
             <ul class="side-nav" id="nav-mobile" ng-show="user">
@@ -25,7 +24,7 @@
                         <div class="background">
                             <img src="https://images.unsplash.com/photo-1445112098124-3e76dd67983c?dpr=2&auto=format&fit=crop&w=1500&h=1004&q=80&cs=tinysrgb&crop=">
                         </div>
-                        <a href="#/settings"><img class="circle" src="{{user.userAvatar}}"></a>
+                        <a href="#/settings"><img class="circle" ng-src="{{user.photoURL}}"></a>
                         <a href="#/settings"><span class="white-text name">{{user.username}}</span></a>
                         <a href="#/settings"><span class="white-text email">{{user.email}}</span></a>
                     </div>
@@ -33,12 +32,45 @@
                     
                 <li><a href="#/search"><i class="material-icons">search</i>Search</a></li>
                 <li><a href="#/projects/list"><i class="material-icons">menu</i>Projects</a></li>
+                <li><a href="#/latestactivity"><i class="material-icons">trending_up</i>Latest Activity</a></li>
                 <li><div class="divider"></div></li>
+                <li><a data-target='settingsModal' modal ready="readyCallback()" complete="completeCallback()" open="openModal"><i class="material-icons">settings</i>Settings</a></li>
                 <li><a class="waves-effect" href="#/logout">Logout</a></li>
             </ul>
             
           </div><!-- /.navwrapper -->
         </nav>
     </div>
-
 </div> 
+<!-- Modal Structure -->
+<div id="settingsModal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="row">
+        <img class="col s3" ng-src="{{user.photoURL}}" />
+        <h5 class="col s9">{{user.displayName}}'s Archivlo Settings</h5>
+        </div>
+         <div class="col s10 offset-s1">
+            <label>Username</label>
+            <div class="row">
+              <h6 editable-text="user.displayName">
+                  {{user.displayName || 'empty'}}
+              </h6>
+            </div>
+            <label>Email</label>
+            <div class="row">
+              <input id="login-email" type="email" class="input-field" ng-model="user.email" required>   
+            </div>
+            <label>Hypothesis Username</label>
+            <div class="row">
+              <input type="text" class="input-field" ng-model="user.hypothesisUsername" required>  
+            </div>
+            <label>Hypothesis Token</label>
+            <div class="row">
+              <input type="text" class="input-field" ng-model="user.hypothesisToken" required>
+            </div>
+          </div>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="updateSettings">Save User Settings</button>
+    </div>
+</div>

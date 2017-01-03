@@ -7,7 +7,8 @@
 	    	"dateCreated": "",
 	    	"dateUpdated": "",
 	    	"private": true,
-	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
+	    	"coverPhoto": ""
     	},
     	"project1":{
 	    	"title": "Missionaries in the Middle East",
@@ -16,7 +17,8 @@
 	    	"dateUpdated": "",
 	    	"keywords": "Missionaries, Middle East, History",
 	    	"private": false,
-	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
+	    	"coverPhoto": ""
     	},
     	"project2":{
 	    	"title": "Cairo in the 1960s",
@@ -25,7 +27,8 @@
 	    	"dateUpdated": "",
 	    	"keywords": "United Arab Republic, Cairo, 1960s",
 	    	"private": true,
-	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
+	    	"coverPhoto": ""
     	}
 	},
 	"annotations":{
@@ -84,18 +87,18 @@
 	"users":{
 		"user0":{
 			"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
-			"username":"Zoe",
+			"displayName":"Zoe",
 			"hypothesisUsername": "zoeleblanc",
 			"hypothesisToken": "6879-1fd25d39c910a19c57d047d7086f32e7",
-			"userAvatar": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?dpr=2&auto=format&fit=crop&w=1500&h=1425&q=80&cs=tinysrgb&crop="
+			"photoURL": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?dpr=2&auto=format&fit=crop&w=1500&h=1425&q=80&cs=tinysrgb&crop="
 		},
 		"user1":{
 			"uid":"oibnNd6kDWOqV6Rfxa7HgO9Pj1k2",
-			"username":"",
+			"displayName":"",
 			"hypothesisUsername": "opencontent",
 			"hypothesisToken": ""
 			,
-			"userAvatar": ""
+			"photoURL": ""
 		}
 	}
 }

@@ -18,20 +18,21 @@ app.controller("AuthCtrl", function($location, $scope, $rootScope, AuthFactory, 
 	let RegisterMeIn = (loginStuff)=>{
 		AuthFactory.authenticate(loginStuff).then( (loginResponse)=>{
 			console.log("loginResponse", loginResponse);
-			return UserFactory.getUser(loginResponse.uid);
+			return UserFactory.getUser(loginResponse);
 		}).then( (userCreds)=>{
 			console.log("userCreds", userCreds);
 			$rootScope.user = userCreds;
+			$rootScope.registering = true;
 			$scope.login = {};
 			$scope.register = {};
-			$location.url('/settings');
+			$location.url('/projects/list');
 
 		});
 	};
 	let logMeIn = (loginStuff)=>{
 		AuthFactory.authenticate(loginStuff).then( (loginResponse)=>{
-			console.log("loginResponse", loginResponse.email);
-			return UserFactory.getUser(loginResponse.uid, loginResponse.email);
+			console.log("loginResponse", loginResponse);
+			return UserFactory.getUser(loginResponse);
 		}).then( (userCreds)=>{
 			console.log("userCreds", userCreds);
 			$rootScope.user = userCreds;
@@ -42,22 +43,64 @@ app.controller("AuthCtrl", function($location, $scope, $rootScope, AuthFactory, 
 		});
 	};
 
-	let loginSetUser = {};
-	loginSetUser.email = "a@a.com";
-	loginSetUser.password = "123456";
-	logMeIn(loginSetUser);
+	// let loginSetUser = {};
+	// loginSetUser.email = "a@a.com";
+	// loginSetUser.password = "123456";
+	// logMeIn(loginSetUser);
+	$scope.setUser = function(userResponse){
+		console.log("userResponseuid", userResponse.uid);
+		UserFactory.checkUser(userResponse).then( (checkUserResponse)=>{
+			if (angular.equals({}, checkUserResponse)){
+				UserFactory.addUser(userResponse).then( (addUserResponse)=>{
+					console.log("addUserResponse", addUserResponse);
+					$rootScope.user = {
+					uid: userResponse.uid,
+					displayName: userResponse.displayName,
+					photoURL: userResponse.photoURL,
+					email: userResponse.email
+					};
+					$scope.login = {};
+					$scope.register = {};
+					$location.url('/projects/list');
+				});
+			} else {
+				console.log("checkUserResponse", checkUserResponse);
+				$rootScope.user = {
+					uid: userResponse.uid,
+					displayName: userResponse.displayName,
+					photoURL: userResponse.photoURL,
+					email: userResponse.email
+				};
+				$scope.login = {};
+				$scope.register = {};
+				$location.url('/projects/list');
+			}
+			
+		});
+		
+	};
+	$scope.loginFacebookUser = ()=>{
+		AuthFactory.authenticateFacebook().then( (logFacebookResponse)=>{
+			console.log("logFacebookResponse", logFacebookResponse);
+			$scope.setUser(logFacebookResponse);
+		});
+	};
+	$scope.loginTwitterUser = ()=>{
+		AuthFactory.authenticateTwitter().then( (logTwitterResponse)=>{
+			console.log("logTwitterResponse", logTwitterResponse);
+			$scope.setUser(logTwitterResponse);
+		});
+	};
+	$scope.loginGithubUser = ()=>{
+		AuthFactory.authenticateGithub().then( (logGithubResponse)=>{
+			console.log("logGithubResponse", logGithubResponse);
+			$scope.setUser(logGithubResponse);
+		});
+	};
 	$scope.loginGoogleUser = ()=>{
 		AuthFactory.authenticateGoogle().then( (logGoogleResponse)=>{
 			console.log("logGoogleResponse", logGoogleResponse);
-			$rootScope.user = {
-				uid: logGoogleResponse.uid,
-				username: logGoogleResponse.displayName 
-			};
-			$scope.login = {};
-			$scope.register = {};
-			$location.url('/boards/list');
-		}).then( (logGoogleComplete)=>{
-			console.log("logGoogleComplete", logGoogleComplete);
+			$scope.setUser(logGoogleResponse);
 		});
 	};
 	$scope.registerUser = function(registerNewUser){
@@ -67,10 +110,12 @@ app.controller("AuthCtrl", function($location, $scope, $rootScope, AuthFactory, 
 			registerNewUser.uid = registerResponse.uid;
 			return UserFactory.addUser(registerNewUser);
 		}).then( (registerComplete)=>{
+			console.log("registerNewUser", registerNewUser);
 			RegisterMeIn(registerNewUser);
 		});
 	};
 	$scope.loginUser = function(loginNewUser){
 		logMeIn(loginNewUser);
 	};
+	
 });

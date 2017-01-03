@@ -2,7 +2,8 @@
 
 app.factory("AuthFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
   let currentUserData = null;
-
+  // $rootScope.storageRef = firebase.storage().ref();
+  // $rootScope.imagesRef = $rootScope.storageRef.child('images');
 //Firebase: Determine if user is authenticated.
   let isAuthenticated = () => {
       return firebase.auth().currentUser ? true : false;
@@ -90,6 +91,51 @@ app.factory("AuthFactory", function($q, $http, $rootScope, FIREBASE_CONFIG) {
         });
     });
   };
-
-  return {isAuthenticated, getUser, logout, registerWithEmail, authenticate, authenticateGoogle, changeEmail, changePassword};
+//Firebase: FACEBOOK - Use input credentials to authenticate user.
+  let authenticateFacebook = () => {
+    return $q((resolve, reject) => {
+      var provider = new firebase.auth.FacebookAuthProvider();
+      console.log("provider", provider);
+      firebase.auth().signInWithPopup(provider)
+        .then((authData) => {
+          currentUserData = authData.user;
+          console.log("currentUserData", currentUserData);
+          resolve(currentUserData);
+        }).catch((error)=> {
+          reject(error);
+        });
+    });
+  };
+//Firebase: Twitter - Use input credentials to authenticate user.
+  let authenticateTwitter = () => {
+    return $q((resolve, reject) => {
+      var provider = new firebase.auth.TwitterAuthProvider();
+      console.log("provider", provider);
+      firebase.auth().signInWithPopup(provider)
+        .then((authData) => {
+          currentUserData = authData.user;
+          console.log("currentUserData", currentUserData);
+          resolve(currentUserData);
+        }).catch((error)=> {
+          reject(error);
+        });
+    });
+  };
+//Firebase: Github - Use input credentials to authenticate user.
+  let authenticateGithub = () => {
+    return $q((resolve, reject) => {
+      var provider = new firebase.auth.GithubAuthProvider();
+      console.log("provider", provider);
+      firebase.auth().signInWithPopup(provider)
+        .then((authData) => {
+          console.log("authData", authData);
+          currentUserData = authData.user;
+          console.log("currentUserData", currentUserData);
+          resolve(currentUserData);
+        }).catch((error)=> {
+          reject(error);
+        });
+    });
+  };
+  return {isAuthenticated, getUser, logout, registerWithEmail, authenticate, authenticateGoogle, changeEmail, changePassword, authenticateFacebook, authenticateTwitter, authenticateGithub};
 });

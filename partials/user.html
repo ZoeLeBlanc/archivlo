@@ -1,11 +1,20 @@
 <div class="row">
 
+  <label>Add User Picture</label>
   <div class="row">
-    <div class="card horizontal col s12 blue-grey lighten-5 hide-on-med-and-down">
+  <input type="file" ng-file-model="userImage" />
+  <img ng-src="{{userImage.data}}" class="col s2"/>
+
+  <button type="submit" ng-click="newAvatar()">submit</button>
+
+  </div>
+ 
+  <div class="row">
+    <div class="card col s12 blue-grey lighten-5">
       <div class="card-image">
         <img ng-show="user.userAvatar" id="user-avatar" src="{{user.userAvatar}}" alt="user-avatar">
 
-        <button ng-show="!user.userAvatar" class="col s2 waves-effect waves-light btn indigo lighten-1" id="noAvatar">Upload Image</button>
+        
       </div>
       <div class="card-stacked">
         <span class="card-title center-align">

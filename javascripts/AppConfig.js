@@ -35,7 +35,7 @@ app.config(function($routeProvider, $httpProvider){
 			templateUrl: 'partials/auth.html',
 			controller: 'AuthCtrl'
 		})
-		.when('/', {
+		.when('/home', {
 			templateUrl: 'partials/landing-page.html',
 			controller: 'LandingPageCtrl'
 		})
@@ -82,6 +82,11 @@ app.config(function($routeProvider, $httpProvider){
 		.when('/annotations/view/:id', {
 			templateUrl: 'partials/annotation-view.html',
 			controller: 'AnnotationViewCtrl',
+			resolve: {isAuth}
+		})
+		.when('/latestactivity', {
+			templateUrl: 'partials/latest-activity.html',
+			controller: 'LatestActivityCtrl',
 			resolve: {isAuth}
 		})
 		.when('/logout', {

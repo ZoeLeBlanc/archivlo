@@ -1,17 +1,36 @@
 "use strict";
-app.controller("UserCtrl", function($scope, $rootScope, UserFactory, AnnotationFactory, HypothesisFactory){
+app.controller("UserCtrl", function($scope, $rootScope, AuthFactory, UserFactory, StorageFactory, AnnotationFactory, HypothesisFactory){
 	console.log($rootScope.user.userAvatar);
 	let updatedUser = {};
 	let userId;
-	// UserFactory.updateUser(updatedUser, userId).then( (userResponse)=>{
-	// 	console.log("update Response", userResponse);
-	// });
- 	
+	$scope.updateProfile = ()=>{
+		AuthFactory.getUser().then( (user)=>{
+			user.updateProfile({
 
- 	var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
- 	var today = (new Date()).getDay();
- 	var sorted_list = weekdays.slice(today).concat(weekdays.slice(0,today));
- 	console.log("today number", sorted_list);
+			});
+		});
+	};
+	$scope.test = {};
+	// $scope.uploadFile = function(){
+	// 	console.log("$scope.userImage", $scope.userImage);
+	// };
+	if ($scope.userImage){
+		$scope.userImage.data = $scope.userImage.data.split(',')[1];
+	}
+	$scope.newAvatar = function() {
+		
+		$scope.userImage.data = $scope.userImage.data.split(',')[1];
+		console.log($scope.userImage);
+		StorageFactory.uploadImage($rootScope.user.uid, $scope.userImage).then( (result)=>{
+
+			UserFactory.updateUserAvatar($rootScope.user.id, result).then( (updateUserResponse)=>{
+				console.log("updateUserResponse", updateUserResponse.userAvatar);
+				$rootScope.user.photoURL = updateUserResponse.photoURL;
+			});
+		});
+    };
+
+ 	
  	$scope.myChartObject = {};
 	$scope.onions = [
         {v: "Onions"},

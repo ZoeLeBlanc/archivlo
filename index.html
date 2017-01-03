@@ -5,6 +5,7 @@
     <title>Archivlo</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
      <link href="/lib/bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
@@ -15,25 +16,33 @@
        <div ng-view></div> 
 
     
-
+    <!-- Required packages -->
     <script type="text/javascript" src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
     <script type="text/javascript" src="/lib/node_modules/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="/lib/node_modules/angular/angular.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.1/angular-materialize.min.js"></script>
+    <script type="text/javascript" src="/lib/bower_components/angular-materialize/src/angular-materialize.js"></script>
     <script type="text/javascript" src="/lib/bower_components/angular-route/angular-route.min.js"></script>
-    <script src="/lib/bower_components/angular-google-chart/ng-google-chart.js"></script>
     <script src="/lib/bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="/lib/bower_components/ng-file-model/ng-file-model.js" type="text/javascript" charset="utf-8" async defer></script>
+    <script src="/lib/node_modules/chart.js/dist/Chart.min.js"></script>
+    <script src="/lib/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+   <!--  Main App files -->
     <script type="text/javascript" src="/javascripts/app.js"></script>
     <script type="text/javascript" src="/javascripts/AppConstants.js"></script>
     <script type="text/javascript" src="/javascripts/AppConfig.js"></script>
+    <!-- Directives -->
+    <script src="/javascripts/directives/fileread.js"></script>
+    <!-- Factories -->
     <script type="text/javascript" src="/javascripts/factories/AuthFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/UserFactory.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/StorageFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/SearchFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/ProjectFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/AnnotationFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/HypothesisFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/ImportFactory.js"></script>
+<!--     Controllers -->    
     <script type="text/javascript" src="/javascripts/controllers/AuthCtrl.js"></script>
     <script type="text/javascript" src="/javascripts/controllers/NavCtrl.js"></script>
     <script type="text/javascript" src="/javascripts/controllers/UserCtrl.js"></script>
@@ -46,5 +55,6 @@
     <script type="text/javascript" src="/javascripts/controllers/AnnotationListCtrl.js"></script>
     <script type="text/javascript" src="/javascripts/controllers/AnnotationViewCtrl.js"></script>
     <script type="text/javascript" src="/javascripts/controllers/ImportCtrl.js"></script>
+    <script type="text/javascript" src="/javascripts/controllers/LatestActivityCtrl.js"></script>
   </body>
 </html>

@@ -1,8 +1,7 @@
 <div class="container">
 	<div class="row">
-		<button class="waves-effect waves-light btn col s3 offset-s1" ng-click="setRegisterContainer()">Register</button>
-		<button class="waves-effect waves-light btn col s3 offset-s1" ng-click="setLoginContainer()">Login</button>
-		<button class="waves-effect waves-light btn col s3 offset-s1" ng-click="loginGoogleUser()">Google Sign In</button>
+		<button class="waves-effect waves-light btn col s5 offset-s1" ng-click="setRegisterContainer()">Register</button>
+		<button class="waves-effect waves-light btn col s4 offset-s1" ng-click="setLoginContainer()">Login</button>
 	</div>
 	<div class="row">
 		<div ng-show="loginContainer">
@@ -23,7 +22,7 @@
 				<input type="email" class="input-field col s10 offset-s1" placeholder="Email address" ng-model="register.email" required autofocus>
 			</div>
 			<div class="row">
-				<input type="text" class="input-field col s10 offset-s1" placeholder="Username" ng-model="register.username" required>
+				<input type="text" class="input-field col s10 offset-s1" placeholder="Username" ng-model="register.displayName" required>
 			</div>
 			<div class="row">
 				<input type="password" class="input-field col s10 offset-s1" placeholder="Password" ng-model="register.password" required>
@@ -33,4 +32,14 @@
 			</div>
 		</div>
 	</div>
+	<div class="fixed-action-btn horizontal"> 
+    <a tooltipped class="btn-floating btn-large teal" data-position="top" data-delay="50" data-tooltip="Login with social media"><i class="zmdi zmdi-sign-in"></i>
+    </a>
+    <ul>
+      <li><a class="btn-floating  indigo lighten-1" ng-click="loginFacebookUser()"><i class="zmdi zmdi-facebook"></i></a></li>
+      <li><a class="btn-floating red darken-1" ng-click="loginGoogleUser()"><i class="zmdi zmdi-google-plus"></i></a></li>
+      <li><a class="btn-floating light-blue darken-1" ng-click="loginTwitterUser()"><i class="zmdi zmdi-twitter"></i></a></li>
+      <li><a class="btn-floating grey lighten-2" ng-click="loginGithubUser()"><i class="zmdi zmdi-github"></i></a></li>
+    </ul>
+  </div> <!-- End of Fab -->
 </div>

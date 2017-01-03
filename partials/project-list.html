@@ -1,3 +1,75 @@
+<div id="modalTrigger" modal data-target="registerModal" ready="readyCallback()" complete="completeCallback()" open="openModal" class="ng-hide" ng-click="getModal(); $event.stopPropagation();"></div>
+<!-- Modal Structure -->
+<div id="registerModal" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <div class="row">
+      <h3>
+        Welcome to Archivlo {{user.displayName}}
+      </h3>
+    </div>
+    <div class="divider"></div>
+    <div class="row">
+      <p>Archivlo is a tool for working with archival records, and is designed to help you manage your archival research workflow. Archivlo helps you create new research projects, manage relevant archival collections, and share your projects with others.</p>
+    </div>
+    <div class="divider"></div>
+    <div class="section">
+      <h5>Before you start project...</h5>
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header"><i class="zmdi zmdi-mood"></i>Add a Profile Picture</div>
+          <div class="collapsible-body">
+          <p>
+            <input type="file" ng-file-model="userImage"/>
+            <img style="width:50%" ng-src="{{userImage.data}}" class="col s2"/>
+          </p>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="zmdi zmdi-account-add"></i>Add Your Hypothesis Account</div>
+          <div class="collapsible-body">
+          <p>
+            What's Hypothesis? <a target="_blank" ng-href="https://hypothes.is/about/"><i class="zmdi zmdi-info"></a></i>
+          </p>
+          <p>
+            "Hypothesis is an open platform for discussion on the web. It leverages annotation to enable sentence-level critique or note-taking on top of news, blogs, scientific articles, books, terms of service, ballot initiatives, legislation and more."
+          </p>
+          <div class="divider"></div>
+          <div class="section">
+            <p>Do you have a Hypothesis Account?</p>
+          <p>
+            If not, sign up <a target="_blank" ng-href="https://hypothes.is/signup">here</a> for a hypothesis account and add your username below.
+          </p>
+          <img style="width:50%" class="col s8 offset-s1" ng-src="https://firebasestorage.googleapis.com/v0/b/archivlo-5b03d.appspot.com/o/hypothesisSignUpScreen.png?alt=media&token=d5ba39cf-ac69-44fd-a322-e672df855501" />
+          </div>
+          <p>
+            <label>Add Your Hypothesis Username<a href="!#" tooltipped data-position="top" data-delay="50" data-tooltip="Input your Hypothesis Username here"><i class="zmdi zmdi-info"></i></a></label>
+            <div class="row">
+              <input type="text" class="input-field col s8 offset-s1" ng-model="user.hypothesisUsername" required>
+            </div>
+          </p>
+          <div class="divider"></div>
+          <div class="section">
+          <p>
+            If you want to get your private annotations, find your Hypothesis Developer Token <a target="_blank" ng-href="https://hypothes.is/account/developer">here.
+          </p>
+          <img style="width:50%" class="col s8 offset-s1" ng-src="https://firebasestorage.googleapis.com/v0/b/archivlo-5b03d.appspot.com/o/hypothesisTokenScreen.png?alt=media&token=c0d431e4-8dc6-421a-b49b-d47973a35fff" />
+          <p>
+            <label>Add Your Hypothesis Token <a href="!#" tooltipped data-position="top" data-delay="50" data-tooltip="Input your Hypothesis Token here"><i class="zmdi zmdi-info"></i></a></label>
+            <div class="row">
+              <input type="text" class="input-field col s8 offset-s1" ng-model="user.hypothesisToken" required>
+            </div>
+          </p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="modal-footer">
+      <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="newAvatar(); updateUser()">Save User Settings</button>
+  </div>
+</div>
+
+
 <div class="row col s12">
 <!-- Tabs -->
   <!-- <div class="row"> 
@@ -10,25 +82,35 @@
   <!-- Fab -->
 
   <div class="row center-align">
-    <h3>{{user.username}}'s Projects</h3>
+    <h3>{{user.displayName}}'s Projects</h3>
   </div>
   <div class="fixed-action-btn horizontal"> 
-    <a tooltipped class="btn-floating btn-large orange lighten-3" href="#/projects/new" data-position="top" data-delay="50" data-tooltip="Add a new project"><i class="large material-icons">add</i>
+    <a tooltipped class="btn-floating btn-large orange lighten-3"  data-position="top" data-delay="50" data-tooltip="Start a new project"><i class="large material-icons">add</i>
     </a>
     <ul>
       <li><a class="btn-floating deep-purple lighten-3"><i class="material-icons">info</i></a></li>
-      <li><a class="btn-floating blue lighten-3"><i class="material-icons">add</i></a></li>
+      <li><a class="btn-floating blue lighten-3" href="#/projects/new"><i class="material-icons">add</i></a></li>
     </ul>
   </div> <!-- End of Fab -->
   <!-- Projects Container -->
   <div class="container" id="projects">
     <div ng-repeat="project in projects">
-      <div class="card blue-grey lighten-5 col s10 offset-s1 m10 offset-m1 l5 offset-l1">
-        <div class="card-content">
+      <div class="card sticky-action blue-grey lighten-5 col s12 m10 offset-m1 l5 offset-l1">
+        <!-- <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="https://images.unsplash.com/uploads/14131528357928cb9c5b5/220ec369?dpr=2&auto=format&fit=crop&w=1500&h=996&q=80&cs=tinysrgb&crop=">
+        </div> -->
+        <div class="card-content activator">
           <span class="card-title">
-            <a href="#/projects/view/{{project.id}}">{{project.title}}</a>
+            <a href="#/projects/view/{{project.id}}">{{project.title}}</a><i class="material-icons right">more_vert</i>
           </span>
           <p>Number of annotations in project: {{project.annotations.length}}</p>
+        </div>
+        <div class="card-reveal blue-grey lighten-5">
+          <span class="card-title">
+            {{project.title}}<i class="material-icons right">close</i></span>
+          </span>
+          <p>Description of Project: {{project.description}}
+          </p>
         </div>
         <div class="card-action">
           <a ng-href="#/projects/edit/{{project.id}}">Edit</a>

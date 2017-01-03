@@ -1,5 +1,47 @@
 "use strict";
-app.controller("ProjectListCtrl", function($scope, $rootScope, ProjectFactory, AnnotationFactory){
+app.controller("ProjectListCtrl", function($scope, $rootScope, $timeout, StorageFactory, UserFactory, ProjectFactory, AnnotationFactory){
+	$scope.openModal = false;
+	if ($rootScope.registering){
+		console.log("registering", $rootScope.registering);
+		getModal();
+	}
+	function getModal(){
+		$timeout(function() {
+			console.log("modal trigger", angular.element('#modalTrigger'));
+			angular.element('#modalTrigger').triggerHandler('click');
+			$scope.openModal = true;
+			$rootScope.registering = false;
+			console.log("registering", $rootScope.registering);
+		});	
+	}
+	if ($scope.userImage){
+		$scope.userImage.data = $scope.userImage.data.split(',')[1];
+	}
+	$scope.newAvatar = function() {
+		$scope.userImage.data = $scope.userImage.data.split(',')[1];
+		console.log($scope.userImage);
+		StorageFactory.uploadImage($rootScope.user.uid, $scope.userImage).then( (result)=>{
+			console.log("result", result);
+			UserFactory.updateUserAvatar($rootScope.user.id, result).then( (updateUserResponse)=>{
+				console.log("updateUserResponse", updateUserResponse.photoURL);
+				$rootScope.user.photoURL = updateUserResponse.photoURL;
+			});
+		});
+    };
+    $scope.updateUser = ()=>{
+    	if (!$scope.user.hypothesisToken){
+    		$scope.user.hypothesisToken = "";
+    		let newHypothesisCred = {
+    		hypothesisUsername: $scope.user.hypothesisUsername,
+    		hypothesisToken: $scope.user.hypothesisToken
+    		};
+    		UserFactory.updateUserHypothesis($rootScope.user.id, newHypothesisCred).then( (updateUserHypothesisResponse)=>{
+    			$rootScope.user.hypothesisUsername = updateUserHypothesisResponse.hypothesisUsername;
+    			$rootScope.user.hypothesisToken = updateUserHypothesisResponse.hypothesisToken;
+    			console.log("submitted user credentials", $rootScope.user);
+    		});		
+    	}
+    };
 	$scope.projects = [];
 	$scope.annotations = [];
 	$scope.projectsToEdit = {};
@@ -46,6 +88,19 @@ app.controller("ProjectListCtrl", function($scope, $rootScope, ProjectFactory, A
 			}
 		});
 		
+	};
+	$scope.updateSettings = ()=>{
+		console.log($rootScope.user);
+		console.log($scope.user);
+		// var user = AuthFactory.getUser();
+		// user.updateProfile({
+		//   displayName: "Jane Q. User",
+		//   photoURL: "https://example.com/jane-q-user/profile.jpg"
+		// }).then(function() {
+		//   // Update successful.
+		// }, function(error) {
+		//   // An error happened.
+		// });
 	};
 	
 });
