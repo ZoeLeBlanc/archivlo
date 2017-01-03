@@ -91,5 +91,21 @@ app.factory("UserFactory", function($q, $http, $rootScope, FIREBASE_CONFIG){
 			});
 		});
 	};
-	return {addUser, getUser, updateUserAvatar, updateUserHypothesis, checkUser};
+	let getAllUsers = ()=>{
+		return $q((resolve, reject) => {
+      		$http.get(`${FIREBASE_CONFIG.databaseURL}/users.json`)
+      		.success((allUsersResponse) => {
+	       		let users = [];
+	       		Object.keys(allUsersResponse).forEach((key) => {
+	         		allUsersResponse[key].id = key;
+	         		users.push(allUsersResponse[key]);
+	      		 });
+       			resolve(users);
+       		 })
+       		.error((errorResponse) => {
+        		reject(errorResponse);
+       		});
+       	});
+	};
+	return {addUser, getUser, updateUserAvatar, updateUserHypothesis, checkUser, getAllUsers};
 });

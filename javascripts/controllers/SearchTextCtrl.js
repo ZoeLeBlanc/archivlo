@@ -1,6 +1,5 @@
 "use strict";
-app.controller("SearchTextCtrl", function($scope, $rootScope, $location, ProjectFactory, AnnotationFactory){
-	
+app.controller("SearchTextCtrl", function($scope, $rootScope, $location, ProjectFactory, AnnotationFactory, UserFactory){
 	$scope.searchRecords = (searchTerm)=>{
 		console.log("search",searchTerm);
 		$scope.filtered = [];
@@ -15,4 +14,9 @@ app.controller("SearchTextCtrl", function($scope, $rootScope, $location, Project
 			});
 		});
 	};
+	// $scope.searchUsers = ()=>{
+	// 	UserFactory.getAllUsers().then( (searchUsersResponse)=>{
+	// 		console.log(searchUsersResponse);
+	// 	});
+	// };
 });
