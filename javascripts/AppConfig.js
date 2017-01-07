@@ -25,7 +25,21 @@ app.run(function($rootScope, $location, AuthFactory, FIREBASE_CONFIG, editableOp
 	});
 	  editableOptions.theme = 'default';
 });
+app.filter('unique', function() {
+   return function(collection, keyname) {
+      var output = [], 
+          keys = [];
 
+      angular.forEach(collection, function(item) {
+          var key = item[keyname];
+          if(keys.indexOf(key) === -1) {
+              keys.push(key);
+              output.push(item);
+          }
+      });
+      return output;
+   };
+});
 app.config(function($routeProvider, $httpProvider){
 	// $httpProvider.defaults.useXDomain = true;
  //  	delete $httpProvider.defaults.headers.common['X-Requested-With'];

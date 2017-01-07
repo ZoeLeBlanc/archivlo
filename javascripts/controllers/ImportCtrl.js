@@ -1,20 +1,33 @@
 "use strict";
-app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, $location, ImportFactory, AnnotationFactory, HypothesisFactory){
+app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, $location, ImportFactory, HypothesisFactory, LeadFactory, ArchiveWikiFactory, UserArchiveFactory){
+	$scope.loadArchives = ()=>{
+		$rootScope.archiveWiki = [];
+		ArchiveWikiFactory.getArchiveWikiList().then( (archiveWikiResponse)=>{
+			angular.forEach(archiveWikiResponse, (archive, index)=>{
+				if (archive !== null){
+					archive.id = index;
+					$rootScope.archiveWiki.push(archive);
+				}
+			});
+			console.log($rootScope.archiveWiki);
+		});
+	};
+	$scope.loadArchives();
 	$scope.importHypothesis = true;
-	$scope.importPDF = false;
+	$scope.importArchives = false;
 	$scope.setImportHypothesis = function(){
 		$scope.importHypothesis = true;
-		$scope.importPDF = false;
+		$scope.importArchives = false;
 	};
-	$scope.setImportPDF = function(){
+	$scope.setImportArchives = function(){
 		$scope.importHypothesis = false;
-		$scope.importPDF = true;
+		$scope.importArchives = true;
 	};
 	$scope.clickProjectId = $routeParams.id;
 	console.log("$scope.projectId", $scope.clickProjectId);
 	
 	$scope.searchHypothesis = function(){
-		$scope.searchAnnotations = {};
+		$scope.searchLeads = {};
 		$scope.newSearch = "search?";
 		angular.forEach($scope.userHypothesis, function(value, key){
 			$scope.newSearch += key+ '='+value + "&";
@@ -22,59 +35,85 @@ app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, $locatio
 		$scope.newSearch = $scope.newSearch.slice(0, -1);
 		console.log("value", $scope.newSearch);
 		HypothesisFactory.searchHypothesis($scope.newSearch).then( (searchResponse)=>{
-			$scope.searchAnnotations = searchResponse[0];
-			console.log($scope.searchAnnotations);
+			$scope.searchLeads = searchResponse[0];
+			console.log($scope.searchLeads);
 			// angular.forEach(searchResponse, function(value,key){
 			// 	console.log("searchResponse", value);
 			// 	value;
 			// });	
- 		$scope.userHypothesis = {};
- 	});
-		$scope.selectedAnnotation = function(){
-			$scope.selectedAnnotations = $scope.searchAnnotations.filter(function(annotation){
-				return annotation.selected;
-			});
-			console.log($scope.selectedAnnotations);
-			angular.forEach($scope.selectedAnnotations, function(value, key){
-				let newAnnotation = {
-		 			title: value.document.title,
-		 			projectId: $scope.clickProjectId,
-		 			text: value.text,
-		 			uri: value.uri,
-		 			html: value.links.html,
-		 			incontext: value.links.incontext,
-		 			json: value.links.json,
-		 			tags: value.tags,
-		 			created: value.created,
-		 			updated: value.updated,
-		 			user: value.user,
-		 			group: value.group,
-		 			id: value.id,
-		 			uid: $rootScope.user.uid
-		 		};
-		 		console.log("newAnnotation", newAnnotation);
-		 		AnnotationFactory.postNewAnnotation(newAnnotation).then( (postNewResponse)=>{
- 					console.log("postNewResponse", postNewResponse);
- 					$location.url('/projects/list');
- 				});
-			});
-		};
+ 			$scope.userHypothesis = {};
+ 		});
 	};
-	
- 	// 	let responses = testResponse[0];
- 	// 	let test = responses[0];
- 	// 	console.log("test", test.document.title);
- 	// 	
- 	// 	
- 		// groupTest = responses[0];
- 		// console.log("groupTest", groupTest.group);
- 		// let userAccount = groupTest.user;
- 		// HypothesisFactory.getHypothesisJson(groupTest).then( (groupResponse)=>{
- 		// 	console.log("groupResponse", groupResponse);
- 		// });
- 		
-		
- 		
- 	// });
- 	// console.log("groupTest", groupTest.group);
+	$scope.selectedLeads = function(){
+		$scope.selectedLeads = $scope.searchLeads.filter(function(lead){
+			return lead.selected;
+		});
+		// console.log($scope.selectedLeads);
+		// LeadFactory.getAllLeads().then( (leads)=>{
+		// 	$scope.totalLeads = leads.length + 1;
+		// });
+		angular.forEach($scope.selectedLeads, function(value, key){
+			let newLead = {
+	 			title: value.document.title,
+	 			projectId: $scope.clickProjectId,
+	 			text: value.text,
+	 			uri: value.uri,
+	 			html: value.links.html,
+	 			incontext: value.links.incontext,
+	 			json: value.links.json,
+	 			tags: value.tags,
+	 			created: value.created,
+	 			updated: value.updated,
+	 			user: value.user,
+	 			group: value.group,
+	 			uid: $rootScope.user.uid
+	 		};
+	 		console.log("newLead", newLead);
+	 		LeadFactory.postNewLead(newLead).then( (postNewResponse)=>{
+					console.log("postNewResponse", postNewResponse);
+				$location.url('/projects/list');
+			});
+		});
+	};
+	$scope.searchArchives = (searchTerm)=>{
+		console.log("search",searchTerm);
+		$scope.filtered = [];
+		var regex = new RegExp(".*" + searchTerm + ".*", "ig");
+		angular.forEach($rootScope.archiveWiki, function(archive, key){
+			console.log("archive", archive);
+			angular.forEach(archive, function(value, key){
+				if (regex.test(value)){
+					console.log(value);
+					$scope.filtered.push(archive);
+				}
+				console.log($scope.filtered);
+			});
+		});
+	};
+	$scope.selectedArchives = function(){
+		console.log("selected click");
+		$scope.selectedArchives = $rootScope.archiveWiki.filter(function(archive){
+			return archive.selected;
+		});
+		console.log($scope.selectedArchives);
+		// UserArchiveFactory.getAllArchives().then( (archives)=>{
+		// 	$scope.totalArchives = archives.length + 1;
+		// });
+		angular.forEach($scope.selectedArchives, function(value, key){
+			let newArchive = {
+	 			title: value.Archive_Name,
+	 			projectId: $scope.clickProjectId,
+	 			description: value.Archive_Info,
+	 			website: value.Archive_Link,
+	 			uid: $rootScope.user.uid
+	 		};
+
+	 		console.log("newArchive", newArchive);
+	 		UserArchiveFactory.postNewUserArchive(newArchive).then( (postNewResponse)=>{
+					console.log("postNewResponse", postNewResponse);
+				$location.url('/projects/list');
+			});
+		});
+	};
+
 });

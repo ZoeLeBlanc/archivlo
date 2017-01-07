@@ -1,6 +1,6 @@
 "use strict";
 
-app.factory("UserFactory", function($q, $http, $rootScope, FIREBASE_CONFIG){
+app.factory("UserFactory", function($q, $http, $rootScope, FIREBASE_CONFIG, AuthFactory){
 	let addUser = (authData)=>{
 		return $q((resolve,reject)=>{
 			$http.post(`${FIREBASE_CONFIG.databaseURL}/users.json`, 
@@ -107,5 +107,25 @@ app.factory("UserFactory", function($q, $http, $rootScope, FIREBASE_CONFIG){
        		});
        	});
 	};
-	return {addUser, getUser, updateUserAvatar, updateUserHypothesis, checkUser, getAllUsers};
+	let updateProfile = (updateUser)=>{
+		return $q( (resolve, reject)=>{
+			var user = AuthFactory.getUser();
+			console.log("updateUser", updateUser);
+			console.log("user Auth", user);
+			user.updateProfile({
+		  		displayName: updateUser.displayName,
+		 		 photoURL: updateUser.photoURL
+			})
+			.then(function(updateUserResponse) {
+			console.log("updateUserResponse", updateUserResponse);
+			resolve(updateUserResponse);
+		  // Update successful.
+			}, function(error) {
+		  // An error happened.
+		  	console.log("error",error);
+		  	reject(error);
+			});
+		});
+	};
+	return {addUser, getUser, updateUserAvatar, updateUserHypothesis, checkUser, getAllUsers, updateProfile};
 });

@@ -1,40 +1,68 @@
 <div class="row">
-	<div class="row">
-		<h1 class="center-align">New Project</h1>
-	</div>
-	<div class="row col s10 offset-s1">
-		<label>Project Title</label>
+	<div class="card col s10 offset-s1">
 		<div class="row">
-			<input class="input-field col s10 offset-s1" type="text" placeholder="Project Title" ng-model="createProject.title" required autofocus>
+			<h4 class="center-align">Create New Project</h4>
 		</div>
-		<label>Project Description</label>
-		<div class="row">
-			<input class="input-field col s10 offset-s1" type="text" placeholder="Project Description" ng-model="createProject.description" required>
-		</div>
-		<label>Project Keywords</label>
-		<div class="row">
-			<input class="input-field col s10 offset-s1" placeholder="List keywords comma separated. Eg. History, modern, 20th Century..." ng-model="createProject.keywords" required>
-		</div>
-		<!-- <label>Project Keywords</label>
-		<div class="row">
-			<div class="chips">
-				<input class="input-field col s10 offset-s1" ng-model="createProject.keywords" required>
+		<div class="divider"></div>
+		<div class="row col s10 offset-s1">
+			<div class="right-align">
+				<label>Public/Private Settings</label>
+				<div class="switch">
+					<label>
+					  Public
+					  <input id="privacySwitch" type="checkbox" ng-model="switchValue">
+					  <span class="lever"></span>
+					  Private
+					</label>
+				</div>
+	        </div>
+			<label>Project Title</label>
+			<div class="row">
+				<input class="input-field col s10 offset-s1" type="text" placeholder="Project Title" ng-model="createProject.title" required autofocus>
 			</div>
-			
-		</div> -->
-		<label>Public/Private Settings</label>
-		<div class="row">
-			<div class="switch">
-			    <label>
-			      Public
-			      <input type="checkbox" ng-model="createProject.private">
-			      <span class="lever"></span>
-			      Private
-			    </label>
+			<label>Project Description</label>
+			<div class="row">
+				<input class="input-field col s10 offset-s1" type="text" placeholder="Project Description" ng-model="createProject.description" required>
 			</div>
-			 <a class="btn-floating btn-large waves-effect waves-light indigo lighten-1 right-align" ng-click="createNewProject(createProject)"><i class="material-icons">arrow_forward</i></a>
+			<label>Project Tags</label>
+			<div class="row">
+				<div class="input-field col s10 offset-s1">
+			        <div ng-show="!editing" class="chips" id="createProjectTags">
+			          <input id="search" ng-model="createProject.tags">
+			       	</div>
+			       	<div ng-show="editing" class="chips-initial" id="editProjectTags">
+			          <input id="search" ng-model="createProject.tags">
+			       	</div>
+			    </div>
+			</div>
+			<label>Project Status</label>
+			<div class="row">
+				<div class="input-field col s3 offset-s1 m2 offset-m1 l1 offset-l1" ng-repeat="status in statusesArray">
+					<input name="group1" type="radio" id="{{status.status}}" ng-model="$parent.selectedStatus" value="{{status.id}}"/>
+      				<label for="{{status.status}}">{{status.status}}</label>
+				</div>
+			</div>
+			<label>Project Cover Photo</label>
+			<div class="row">
+				<div class="col s12">
+					<input type="file" ng-file-model="createProject.projectImage" required/>
+				</div>
+				<div  class="col s6" ng-show="createProject.projectImage">
+		  			<img materialboxed class="materialboxed col s12" data-caption="New Project Cover Photo" ng-src="{{createProject.projectImage.data}}" id="newPhoto"/>
+		  			
+	  			</div>
+	  			<div class="col s6" ng-show="createProject.coverPhoto" id="editPhoto">
+		  			<img materialboxed class="materialboxed col s12" data-caption="Original Project Cover Photo" ng-src="{{createProject.coverPhoto}}" />
+		  			
+	  			</div>
+			</div>
 		</div>
-		
+			<div class="row" ng-show="!editing">
+				 <h5><a class="btn btn-large waves-effect waves-light indigo lighten-1 col s8 offset-s2" ng-click="createNewProject(createProject)">CREATE PROJECT</a></h5>
+			</div>
+			<div class="row" ng-show="editing">
+				 <h5><a class="btn btn-large waves-effect waves-light indigo lighten-1 col s8 offset-s2" ng-click="createNewProject(createProject)">Edit PROJECT</a></h5>
+			</div>
+		</div>
 	</div>
-	
 </div>

@@ -1,70 +1,220 @@
-<div class="row">
-	<div class="row">
-		<div ng-repeat="project in projectsArray | filter: {id: clickProjectId}" class="col s8  center-align">
-			<h4>Project Title: {{project.title}}</h4>
+<div class="row" ng-repeat="project in nestedProjects | filter: {id: clickProjectId}">
+	<div class="row" >
+		<div class="card col s10 offset-s1 center-align"> 
+			<h5>Viewing Project: {{project.title}}</h5>
+			<div class="divider"></div>
+			<!-- END OF TITLE -->
+			<div class="row">
+				<ul class="tabs" tabs>
+	              <li class="tab col s4">
+	                <a href="#allLeads"><h5 style="color:lightgrey">Research Leads</h5></a>
+	              </li>
+	              <li class="tab col s4">
+	                <a href="#allNotes"><h5 style="color:lightgrey">Research Notes</h5></a>
+	              </li>
+	              <li class="tab col s4">
+	                <a href="#allArchives"><h5 style="color:lightgrey">Research Archives</h5></a>
+	              </li>
+              	</ul>
+			</div>
+			<!-- END OF TABS -->
+			<div class="row">
+				<!-- CONTAINING ROW -->
+				<div id="allLeads">	
+				  	<!-- Unedited Annotations -->
+					<div id="uneditedLeads" class="row" ng-show="!editVersion">
+						<div id="Leads">
+						    <div ng-show="project.leads.length">
+							    <div ng-repeat="lead in project.leads">
+							      	<div class="card blue-grey lighten-5 col s8 offset-s2 left-align">
+								        <div class="card-content">
+						          			<h4 class="card-title">Title: {{lead.title || 'empty'}}</h4>
+						          			<div class="card-action">
+						          			<p ng-show="lead.text.length">Text: {{lead.text}}</p>
+						          			<p ng-show="lead.tags.length">Tags: {{lead.tags}}</p>
+						          			<a ng-show="lead.links.html.length" href="{{lead.links.html}}">Link: {{lead.html}}</a>
+						          			<p ng-show="lead.user.length">User: {{lead.user}}</p>
+						          			<p ng-show="lead.group.length">Group: {{lead.group}}</p>
+						          			<input type="checkbox" id="{{lead.id}}" ng-model="lead.selected"/>
+					      					<label for="{{lead.id}}">Select Research Lead</label>
+						          			</div>
+						        		</div>
+							      	</div>
+							    </div>
+						    </div>
+					  	</div>
+					  	<!-- Fab -->
+					  	<div class="fixed-action-btn horizontal"> 
+						    <a tooltipped class="btn-floating btn-large indigo darken-1" data-position="top" data-delay="50" data-tooltip="Update research leads"><i class="large material-icons">menu</i>
+						    </a>
+						    <ul>
+							    <li><a tooltipped class="btn-floating indigo lighten-4" data-position="top" data-delay="50" data-tooltip="Delete selected leads" ng-click="deleteLead()"><i class="material-icons">delete</i></a></li>
+							    <li><a tooltipped class="btn-floating indigo lighten-2" data-position="top" data-delay="50" data-tooltip="Edit selected leads" ng-click="editLead()"><i class="material-icons" >edit</i></a></li>
+							    <li><a tooltipped class="btn-floating indigo" data-position="top" data-delay="50" data-tooltip="Add leads" ng-href="#/projects/import/{{clickProjectId}}"><i class="material-icons" >add</i></a></li>
+						    </ul>
+					  	</div> <!-- End of Fab -->
+					</div> <!-- End of unedited div -->
+					<!-- 	Beginning of Edited div
+							 -->	
+					<div id="editedLeads" class="row" ng-show="editVersion">
+							<!-- Fab -->
+					  	<div class="fixed-action-btn horizontal"> 
+					    <a tooltipped class="btn-floating btn-large indigo darken-1" data-position="top" data-delay="50" data-tooltip="Save edited leads" ng-click="saveEditedLeads()"><i class="large material-icons">add</i>
+					    </a>
+					  	</div> <!-- End of Fab -->
+						<div id="Leads">
+						    <div ng-show="selectedEditLeads.length">
+							    <div ng-repeat="lead in selectedEditLeads | filter: {projectId: clickProjectId}">
+							      	<div class="card blue-grey lighten-5 col s8 offset-s2 left-align">
+								        <div class="card-content">
+						          			<h4 class="card-title" editable-text="lead.title">Title: {{lead.title || 'empty'}}</h4>
+						          			<div class="card-action">
+							          			<p editable-text="lead.text">Text: {{lead.text || 'empty'}}</p>
+							          			<p editable-text="lead.tags">Tags: {{lead.tags || 'empty'}}</p>
+							          			<a href="{{lead.links.html}}" editable-text="lead.html">Link: {{lead.html || 'empty'}}</a>
+							          			<p editable-text="lead.user">User: {{lead.user || 'empty'}}</p>
+							          			<p editable-text="lead.group">Group: {{lead.group || 'empty'}}</p>
+							          			<input type="checkbox" id="{{lead.id}}" ng-model="lead.selected"/>
+						      					<label for="{{lead.id}}">Select Research Lead</label>
+						      				</div>
+						          		</div>
+							      	</div>
+							    </div>
+						    </div>
+					  	</div>
+					</div> <!-- End of edited div -->
+				</div>
+	
+		<!-- END OF LEADS -->
+				<div id="allArchives">	
+				  	<!-- Unedited Annotations -->
+					<div id="uneditedArchives" class="row" ng-show="!editVersion">
+						<div id="Leads">
+						    <div ng-show="project.userArchives.length">
+							    <div ng-repeat="archive in project.userArchives">
+							      	<div class="card blue-grey lighten-5 col s8 offset-s2 left-align">
+								        <div class="card-content">
+						          			<h4 class="card-title">Title: {{archive.title || 'empty'}}</h4>
+						          			<div class="card-action">
+						          			<p ng-show="archive.description.length">Description: {{archive.description | limitTo: 100}}</p>
+						          			<p ng-show="archive.address.length">Address: {{archive.address}}</p>
+						          			<a ng-show="archive.website.length" href="{{archive.website}}">Website: {{archive.website}}</a>
+						          			<input type="checkbox" id="{{archive.id}}" ng-model="archive.selected"/>
+					      					<label for="{{archive.id}}">Select Research Lead</label>
+						          			</div>
+						        		</div>
+							      	</div>
+							    </div>
+						    </div>
+					  	</div>
+					  	<!-- Fab -->
+					  	<div class="fixed-action-btn horizontal"> 
+						    <a tooltipped class="btn-floating btn-large pink darken-1" data-position="top" data-delay="50" data-tooltip="Update research archives"><i class="large material-icons">menu</i>
+						    </a>
+						    <ul>
+							    <li><a tooltipped class="btn-floating pink lighten-4" data-position="top" data-delay="50" data-tooltip="Delete selected archives" ng-click="deleteArchive()"><i class="material-icons">delete</i></a></li>
+							    <li><a tooltipped class="btn-floating pink lighten-2" data-position="top" data-delay="50" data-tooltip="Edit selected archives" ng-click="editArchive()"><i class="material-icons" >edit</i></a></li>
+							    <li><a tooltipped class="btn-floating pink" data-position="top" data-delay="50" data-tooltip="Add archives" ng-href="#/projects/import/{{clickProjectId}}"><i class="material-icons" >add</i></a></li>
+						    </ul>
+					  	</div> <!-- End of Fab -->
+					</div> <!-- End of unedited div -->
+					<!-- 	Beginning of Edited div
+							 -->	
+					<div id="editedArchives" class="row" ng-show="editVersion">
+							<!-- Fab -->
+					  	<div class="fixed-action-btn horizontal"> 
+					    <a tooltipped class="btn-floating btn-large pink" data-position="top" data-delay="50" data-tooltip="Save edited archives" ng-click="saveEditedArchives()"><i class="large material-icons">add</i>
+					    </a>
+					  	</div> <!-- End of Fab -->
+						<div id="Archives">
+						    <div ng-show="selectedEditArchives.length">
+							    <div ng-repeat="archive in selectedEditArchives | filter: {projectId: clickProjectId}">
+							      	<div class="card blue-grey lighten-5 col s8 offset-s2 left-align">
+								        <div class="card-content">
+						          			<h4 class="card-title" editable-text="archive.title">Title: {{archive.title || 'empty'}}</h4>
+						          			<div class="card-action">
+							          			<p editable-text="archive.description">Description: {{archive.description}}</p>
+							          			<p editable-text="archive.address">Address: {{archive.address}}</p>
+							          			<a href="{{archive.website}}" editable-text="archive.website">Website: {{archive.website}}</a>
+							          			<input type="checkbox" id="{{archive.id}}" ng-model="archive.selected"/>
+						      					<label for="{{archive.id}}">Select Research Archive</label>
+						      				</div>
+						          		</div>
+							      	</div>
+							    </div>
+						    </div>
+					  	</div>
+					</div> <!-- End of edited div -->
+				</div>
+	
+		<!-- END OF ARCHIVES -->
+				<div id="allNotes">
+				<!-- Unedited Notes -->
+					<div id="uneditedNotes" class="row" ng-show="!editVersion">
+						<div id="Notes">
+						    <div ng-show="project.notes.length">
+							    <div ng-repeat="note in project.notes">
+							      	<div class="card blue-grey lighten-5 col s8 offset-s2 left-align">
+								        <div class="card-content">
+						          			<h4 class="card-title">Title: {{note.title || 'empty'}}</h4>
+						          			<div class="card-action">
+							          			<p ng-show="note.description.length">Text: {{note.description}}</p>
+							          			<p ng-show="note.created.length">Tags: {{note.created | date:'mediumDate'}}</p>
+							          			<input type="checkbox" id="{{note.id}}" ng-model="note.selected"/>
+						      					<label for="{{note.id}}">Select Research Note</label>
+						          			</div>
+						        		</div>
+							      	</div>
+							    </div>
+						    </div>
+					  	</div>
+					  	<!-- Fab -->
+					  	<div class="fixed-action-btn horizontal"> 
+						    <a tooltipped class="btn-floating btn-large light-blue darken-1" data-position="top" data-delay="50" data-tooltip="Update research notes"><i class="large material-icons">menu</i>
+						    </a>
+						    <ul>
+							    <li><a tooltipped class="btn-floating light-blue lighten-4" data-position="top" data-delay="50" data-tooltip="Delete selected notes" ng-click="deleteNote()"><i class="material-icons">delete</i></a></li>
+							    <li><a tooltipped class="btn-floating light-blue lighten-2" data-position="top" data-delay="50" data-tooltip="Edit selected notes" ng-click="editNote()"><i class="material-icons" >edit</i></a></li>
+							    <li><a tooltipped class="btn-floating light-blue" data-position="top" data-delay="50" data-tooltip="Add notes" ng-href="#/projects/import/{{clickProjectId}}"><i class="material-icons" >add</i></a></li>
+						    </ul>
+					  	</div> <!-- End of Fab -->
+					</div> <!-- End of unedited div -->
+					<!-- 	Beginning of Edited div
+							 -->	
+					<div id="editedNotes" class="row" ng-show="editVersion">
+							<!-- Fab -->
+					  	<div class="fixed-action-btn horizontal"> 
+					    <a tooltipped class="btn-floating btn-large light-blue" data-position="top" data-delay="50" data-tooltip="Save edited notes" ng-click="saveEditedNotes()"><i class="large material-icons">add</i>
+					    </a>
+					  	</div> <!-- End of Fab -->
+						<div id="Notes">
+						    <div ng-show="selectedEditNotes.length">
+							    <div ng-repeat="note in selectedEditNotes | filter: {projectId: clickProjectId}">
+							      	<div class="card blue-grey lighten-5 col s8 offset-s2 left-align">
+								        <div class="card-content">
+						          			<h4 class="card-title" editable-text="note.title">Title: {{note.title || 'empty'}}</h4>
+						          			<div class="card-action">
+						          			<p editable-text="note.description">Text: {{note.description}}</p>
+						          			<p>Date Created: {{note.created | date:'mediumDate'}}</p>
+						          			<input type="checkbox" id="{{note.id}}" ng-model="note.selected"/>
+					      					<label for="{{note.id}}">Select Research Note</label> 
+						          		</div>
+							      	</div>
+							    </div>
+						    </div>
+					  	</div>
+					</div> <!-- End of edited div -->
+				</div>
+			</div>
+			<!-- END OF ALL NOTES -->
+			<div class="divider"></div>
+			<h5 class="left-align" style="color:lightgrey">Project Tags</h5>
+			<div class="row">
+		   		
+		   		<p style="color: #ee6e73;" class="col s3 m2 l1" ng-repeat="tag in project.tags">
+		   		{{tag.tag | uppercase }}
+		   		</p>
+		   	</div>
 		</div>
 	</div>
-	<!-- Unedited Annotations -->
-	<div id="uneditedAnnotations" class="row" ng-show="!editVersion">
-			<!-- Fab -->
-	  	<div class="fixed-action-btn horizontal"> 
-	    <a tooltipped class="btn-floating btn-large orange lighten-3" data-position="top" data-delay="50" data-tooltip="Update annotations"><i class="large material-icons">menu</i>
-	    </a>
-	    <ul>
-	    <li><a tooltipped class="btn-floating indigo lighten-3" data-position="top" data-delay="50" data-tooltip="Add annotations" ng-href="#/projects/import/{{clickProjectId}}"><i class="material-icons" >add</i></a></li>
-	    <li><a tooltipped class="btn-floating deep-purple lighten-3" data-position="top" data-delay="50" data-tooltip="Edit selected annotations" ng-click="editAnnotation()"><i class="material-icons" >edit</i></a></li>
-	    <li><a tooltipped class="btn-floating blue lighten-3" data-position="top" data-delay="50" data-tooltip="Delete selected annotations" ng-click="deleteAnnotation()"><i class="material-icons">delete</i></a></li>
-	    </ul>
-	  	</div> <!-- End of Fab -->
-		<div id="Annotations">
-		    <div ng-show="annotationsArray.length">
-			    <div ng-repeat="annotation in annotationsArray | filter: {projectId: clickProjectId}">
-			      	<div class="card blue-grey lighten-5 col s8 offset-s2">
-				        <div class="card-content">
-				        	
-		          			<h4 class="card-title">Title: {{annotation.title || 'empty'}}</h4>
-		          			<div class="card-action">
-		          			<p ng-show="annotation.text.length">Text: {{annotation.text}}</p>
-		          			<p ng-show="annotation.tags.length">Tags: {{annotation.tags}}</p>
-		          			<a ng-show="annotation.links.html.length" href="{{annotation.links.html}}">Link: {{annotation.html}}</a>
-		          			<p ng-show="annotation.user.length">User: {{annotation.user}}</p>
-		          			<p ng-show="annotation.group.length">Group: {{annotation.group}}</p>
-		          			<input type="checkbox" id="{{annotation.id}}" ng-model="annotation.selected"/>
-	      					<label for="{{annotation.id}}">Select Annotation</label>
-		          			</div>
-		        		</div>
-			      	</div>
-			    </div>
-		    </div>
-	  	</div>
-	</div> <!-- End of unedited div -->
-<!-- 	Beginning of Edited div
- -->	<div id="editedAnnotations" class="row" ng-show="editVersion">
-			<!-- Fab -->
-	  	<div class="fixed-action-btn horizontal"> 
-	    <a tooltipped class="btn-floating btn-large orange lighten-3" data-position="top" data-delay="50" data-tooltip="Save edited annotations" ng-click="saveEditedAnnotations()"><i class="large material-icons">add</i>
-	    </a>
-	  	</div> <!-- End of Fab -->
-		<div id="Annotations">
-		    <div ng-show="selectedEditAnnotations.length">
-			    <div ng-repeat="annotation in selectedEditAnnotations | filter: {projectId: clickProjectId}">
-			      	<div class="card blue-grey lighten-5 col s8 offset-s2">
-				        <div class="card-content">
-				        	
-		          			<h4 class="card-title" editable-text="annotation.title">Title: {{annotation.title || 'empty'}}</h4>
-		          			<div class="card-action">
-		          			<p editable-text="annotation.text">Text: {{annotation.text || 'empty'}}</p>
-		          			<p editable-text="annotation.tags">Tags: {{annotation.tags || 'empty'}}</p>
-		          			<a href="{{annotation.links.html}}" editable-text="annotation.html">Link: {{annotation.html || 'empty'}}</a>
-		          			<p editable-text="annotation.user">User: {{annotation.user || 'empty'}}</p>
-		          			<p editable-text="annotation.group">Group: {{annotation.group || 'empty'}}</p>
-		          			<input type="checkbox" id="{{annotation.id}}" ng-model="annotation.selected"/>
-	      					<label for="{{annotation.id}}">Select Annotation</label>
-		          			</div>
-		        		</div>
-			      	</div>
-			    </div>
-		    </div>
-	  	</div>
-	</div> <!-- End of edited div -->
 </div>

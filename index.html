@@ -9,7 +9,7 @@
      <link href="/lib/bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/main.css">
   </head>
-  <body ng-app="ArchivloApp">
+  <body ng-app="ArchivloApp" class="indigo lighten-5">
     
     <div ng-include="'./partials/nav.html'"></div>
 
@@ -27,6 +27,8 @@
     <script src="/lib/bower_components/ng-file-model/ng-file-model.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="/lib/node_modules/chart.js/dist/Chart.min.js"></script>
     <script src="/lib/node_modules/angular-chart.js/dist/angular-chart.min.js"></script>
+    <script src="/lib/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="/lib/bower_components/ng-csv/build/ng-csv.min.js"></script>
    <!--  Main App files -->
     <script type="text/javascript" src="/javascripts/app.js"></script>
     <script type="text/javascript" src="/javascripts/AppConstants.js"></script>
@@ -39,9 +41,17 @@
     <script type="text/javascript" src="/javascripts/factories/StorageFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/SearchFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/ProjectFactory.js"></script>
-    <script type="text/javascript" src="/javascripts/factories/AnnotationFactory.js"></script>
+    <!-- <script type="text/javascript" src="/javascripts/factories/FolderFactory.js"></script> -->
+    <!-- <script type="text/javascript" src="/javascripts/factories/CollaboratorFactory.js"></script> -->
+    <script type="text/javascript" src="/javascripts/factories/TagFactory.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/StatusFactory.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/NoteFactory.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/UserArchiveFactory.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/LeadFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/HypothesisFactory.js"></script>
     <script type="text/javascript" src="/javascripts/factories/ImportFactory.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/ArchiveWikiFactory.js"></script>
+    <!-- <script type="text/javascript" src="/javascripts/factories/CollectionFactory.js"></script> -->
 <!--     Controllers -->    
     <script type="text/javascript" src="/javascripts/controllers/AuthCtrl.js"></script>
     <script type="text/javascript" src="/javascripts/controllers/NavCtrl.js"></script>

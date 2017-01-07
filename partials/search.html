@@ -1,33 +1,69 @@
 <div class="row">
-	<!-- <div class="row">
-		<ul class="tabs">
-		    <li class="tab col s6" ><a class="active" data-target="#searchProjects">Search Projects</a></li>
-		    <li class="tab col s6"><a  data-target="#searchUsers" ng-click="searchUsers()">Search Users</a></li>
+	<div class="row" >
+		<ul class="tabs" tabs style="background-color: #e8eaf6;">
+		    <li class="tab col s5 offset-s1">
+		    	<a class="active" href="#searchProjects">Search All Archivlo Projects</a>
+		    </li>
+		    <li class="tab col s5 offset-s1">
+		    	<a href="#searchUsers" ng-click="searchUsers()">Search All Archivlo Users</a>
+		    </li>
 		</ul>
-	</div> -->
-	<div class="row" id="searchProjects">
-		<div class="row">
-			<div class="card col s10 offset-s1 blue-grey lighten-5">
-				<div class="input-field col s8">
-					<input type="text" id="search" ng-model="searchTerm" ng-keyup="$event.keyCode === 13 && searchRecords(searchTerm)">
-					<label for="search">Enter any search term</label>
-				</div>
-					 <button class="waves-effect waves-light btn indigo lighten-1 col s4" ng-click="searchRecords(searchTerm)" style="margin-top: 1em;">Search Your Archival Records</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col s12" ng-show="filtered.length">
-				<div ng-repeat="item in filtered track by $index">
-					<div class="card blue-grey lighten-5 col s8 offset-s2">
-				        <div class="card-content">	
-		          		 	<h4 class="card-title"><a ng-href="#/projects/view/{{item.id}}"> Title: {{item.title}}</a></h4>
-		          		 	<div class="card-action">
-			          		<p ng-show="item.description.length">Description: {{item.description}}</p>
-			          		<p ng-show="item.keywords.length">Keywords: {{item.keywords}}</p>
-		          		</div>
-		          	</div>
+	</div>
+	<div class="row">
+		<div class="row" id="searchProjects">
+			<div class="row">
+				<div class="card col s10 offset-s1">
+					<div class="input-field col s8">
+						<input type="text" id="search" ng-model="searchTerm" ng-keyup="$event.keyCode === 13 && searchRecords(searchTerm)">
+						<label for="search">Enter any search term</label>
+					</div>
+					<button class="waves-effect waves-light btn indigo lighten-1 col s4" ng-click="searchRecords(searchTerm)" style="margin-top: 1em;">Search Your Archival Records</button>
 				</div>
 			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col s12" ng-show="filtered.length">
+						<div ng-repeat="project in filtered | unique: 'id' track by $index">
+							<div class="card col s12 m10 offset-m1 l5 offset-l1">
+					            <div class="card-image waves-effect waves-block waves-light">
+					              <img src="{{project.coverPhoto}}" ng-show="{{project.coverPhoto}}">
+					            </div>
+					            <div class="card-content">
+					              <span class="card-title">
+					              	{{project.title}}
+					              </span>
+					              <p>Description of Project: {{project.description}}
+					              </p>
+					              <p style="color:lightgrey">Project Owner: {{project.displayName}} / Project Created: {{project.dateCreated | date:'mediumDate'}} 
+					              </p>
+					            </div>
+					            <div class="card-action">
+					              <a href="" ng-click="favoriteProject(project.id)">Fave Project</a>
+					              <a href="" ng-click="contactProject(project.uid)">Contact Project Owner</a>
+					            </div>
+					          </div><!-- End of Card -->
+						</div>
+					</div>
+				</div> <!-- End of search projects area -->
+			</div>
+		</div> <!-- End of searchProjects -->
+		<div class="row" id="searchUsers">
+			<div class="col s12" ng-show="namedUsers.length">
+				<div ng-repeat="user in namedUsers track by $index">
+					<div class="card col s8 offset-s2 m4 offset-m2 l3 offset-l1">
+						<div class="card-image waves-effect waves-block waves-light">
+			              <img src="{{user.photoURL}}" ng-show="{{user.photoURL}}">
+			            </div>
+			        	<div class="card-content">	
+	          		 		<h4 class="card-title"> User: {{user.displayName}}</a></h4>
+	          		 		<div class="card-action">
+					          <a ng-click="saveUser(user.uid)">Save</a>
+					          <a ng-click="contactUser(user.uid)">Contact</a>
+					        </div>
+					    </div>
+	          		</div>
+				</div><!-- End of Card -->
+			</div>
 		</div>
-	</div> <!-- End of searchProjects -->
+	</div>
 </div> <!-- End of containing row -->

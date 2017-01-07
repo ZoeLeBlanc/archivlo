@@ -21,8 +21,7 @@
             <ul class="side-nav" id="nav-mobile" ng-show="user">
                 <li>
                     <div class="userView">
-                        <div class="background">
-                            <img src="https://images.unsplash.com/photo-1445112098124-3e76dd67983c?dpr=2&auto=format&fit=crop&w=1500&h=1004&q=80&cs=tinysrgb&crop=">
+                        <div class="background indigo accent-1">
                         </div>
                         <a href="#/settings"><img class="circle" ng-src="{{user.photoURL}}"></a>
                         <a href="#/settings"><span class="white-text name">{{user.username}}</span></a>
@@ -43,7 +42,7 @@
     </div>
 </div> 
 <!-- Modal Structure -->
-<div id="settingsModal" class="modal modal-fixed-footer">
+<div id="settingsModal" class="modal modal-fixed-footer" ng-controller="UserCtrl">
     <div class="modal-content">
         <div class="row">
         <img class="col s3" ng-src="{{user.photoURL}}" />
@@ -71,6 +70,6 @@
           </div>
     </div>
     <div class="modal-footer">
-        <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="updateSettings">Save User Settings</button>
+        <button class="modal-action modal-close waves-effect waves-green btn-flat" ng-click="updateSettings()">Save User Settings</button>
     </div>
 </div>

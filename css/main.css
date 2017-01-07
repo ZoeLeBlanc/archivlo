@@ -8,11 +8,55 @@
   position: fixed !important;
   top: 0 !important; }
 
+.btn {
+  background-color: #ee6e73; }
+
+.btn:hover {
+  background-color: #C5CAE9; }
+
+.btn:focus {
+  background-color: #5c6bc0; }
+
+input[type=email]:focus:not([readonly]) {
+  border-bottom: 1px solid #ee6e73;
+  box-shadow: 0 1px 0 0 #ee6e73; }
+
+input[type=password]:focus:not([readonly]) {
+  border-bottom: 1px solid #ee6e73;
+  box-shadow: 0 1px 0 0 #ee6e73; }
+
+input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid #ee6e73;
+  box-shadow: 0 1px 0 0 #ee6e73; }
+
+.switch label input[type=checkbox]:checked + .lever {
+  background-color: #ee6e73; }
+
+.switch label input[type=checkbox]:checked + .lever:after {
+  background-color: #f3999d; }
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+  color: #ee6e73; }
+
+a {
+  color: #5c6bc0; }
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+  background-color: #ee6e73; }
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:before, [type="radio"].with-gap:checked + label:after {
+  border: 2px solid #ee6e73; }
+
+.chips.focus {
+  border-bottom: 1px solid #ee6e73;
+  box-shadow: 0 1px 0 0 #ee6e73; }
+
 #sidenav-overlay {
   display: none; }
 
 #user-avatar {
-  object-fit: cover; }
+  object-fit: cover;
+  width: 10em; }
 
 .card.horizontal .card-image {
   max-width: 60%; }
@@ -51,3 +95,17 @@
 * + html .btn-upload {
   padding: 2px 15px;
   margin: 1px 0 0 0; }
+
+.star {
+  visibility: hidden;
+  font-size: 30px;
+  cursor: pointer; }
+
+.star:before {
+  content: "\2605";
+  position: absolute;
+  visibility: visible; }
+
+.star:checked:before {
+  content: "\2606";
+  position: absolute; }

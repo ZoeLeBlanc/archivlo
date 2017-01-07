@@ -1,23 +1,36 @@
-<div class="row">
-  <div class="row" style="margin-top:1em;">
-    <div class="col s6 offset-s1">
-      <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
-      </canvas>
-    </div>
-    <div class="col s4 offset-s1">
-      <div class="input-field col s10 offset-s1">
-        <input type="text" id="any" ng-model="userHypothesis.any">
-        <label for="any">Enter any search term</label>
-      </div> 
-      <div class="input-field col s10 offset-s1">
+<div class="row"> <!-- Container -->
+  <div class="row"> <!-- Select Search Terms -->
+    <div class="col s10 offset-s1">
+      <div class="col s5 offset-s1">
+        <label>Select Hypothesis Property</label>
+          <select ng-model="selectedOption" material-select>
+              <option value="">---Please select---</option> <!-- not selected / blank option -->
+              <!-- <option value="createNewBoard" href="#/boards/new" ng-show="!boardsArray.length">Create new board</option>  -->
+              <option ng-repeat="prop in hypothesisOptions" ng-selected="prop==selectedOption">{{prop}}</option> 
+          </select>
+      </div>
+      <!-- <div class="input-field col s5 offset-s1">
         <div class="chips" id="searchChips">
+          <input id="search" ng-model="searchTerms">
+          <label for="search">Enter any search term</label>
+        </div>
+      </div> -->
+      <div class="input-field col s5 offset-s1">
+        <div class="chips-initial" id="searchChips">
           <input id="search" ng-model="searchTerms">
           <!-- <label for="search">Enter any search term</label> -->
         </div>
       </div>
-      <button class="waves-effect waves-light btn col s3 offset-s1" ng-click="getChips()">Search Hypothesis</button>
+      <button class="waves-effect waves-light btn col s11 offset-s1" ng-click="getSearchies()">Search Hypothesis</button>
     </div>
-  </div>
+  </div> <!-- End search terms -->
+  <div class="row" style="margin-top:1em;"> <!-- Chart -->
+    <div class="col s11 offset-s1">
+      <canvas id="line" class="chart chart-line" chart-data="data" chart-labels="labels" chart-series="series" chart-options="options" chart-dataset-override="datasetOverride" chart-click="onClick">
+      </canvas>
+    </div>
+  </div> <!-- End of Chart -->
+
   <div class="col s6 offset-s1" style="height: 600px; overflow-y: scroll">
     <ul class="collection with-header">
       <li class="collection-header">

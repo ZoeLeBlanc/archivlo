@@ -1,0 +1,189 @@
+{
+	"projects":{
+		"project0":{
+	    	"title": "Nasser and The Philosophy of the Revolution",
+	    	"description": "Collections that mention Nasser",
+	    	"dateCreated": "",
+	    	"dateUpdated": "",
+	    	"private": true,
+	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
+	    	"coverPhoto": "",
+	    	"statusId": ""
+    	},
+    	"project1":{
+	    	"title": "Missionaries in the Middle East",
+	    	"description": "Collections of missionary archives",
+	    	"dateCreated": "",
+	    	"dateUpdated": "",
+	    	"private": false,
+	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
+	    	"coverPhoto": "",
+	    	"statusId": ""
+    	},
+    	"project2":{
+	    	"title": "Cairo in the 1960s",
+	    	"description": "Collections of revolutionaries",
+	    	"dateCreated": "",
+	    	"dateUpdated": "",
+	    	"private": true,
+	    	"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
+	    	"coverPhoto": "",
+	    	"statusId": ""
+    	}
+	},
+	"statuses":{
+		"status0":{
+			"status": "future",
+			"statusId": 0
+		},
+		"status1":{
+			"status": "active",
+			"statusId": 1
+		},
+		"status2":{
+			"status": "archived",
+			"statusId": 2
+		}
+	},
+	"notes":{
+		"note0":{
+			"note": "Test",
+			"projectId": "project0",
+			"folderId": "",
+			"leadId": "",
+			"archiveId": "",
+			"collectionId": "",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		}
+	},
+	"folders":{
+		"folder0":{
+			"folder": "British Library Leads",
+			"projectId": "project0",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		}
+	},
+	"tags":{
+		"tag0":{
+			"tag": "history",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
+			"projectId": "project0",
+			"leadId": "",
+			"noteId": "",
+			"archiveId": "",
+			"collectionId": "",
+			"folderId": ""
+		}
+	},
+	"collaborators":{
+		"collaborator0":{
+			"userId": "",
+			"displayName": "",
+			"projectId": "",
+			"uid": ""
+		}
+	},
+	"archives":{
+		"archive0":{
+			"archive": "Library of Congress",
+			"address": "",
+			"website": "",
+			"leadId": "",
+			"folderId": "",
+			"projectId": "project0",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		}
+	},
+	"collections":{
+		"collection0":{
+			"archiveId": "archive0",
+			"collection": "",
+			"website": "",
+			"leadId": "",
+			"folderId": "",
+			"projectId": "project0",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		}
+	},
+	"leads":{
+		"lead0":{
+			"title": "library of congress",
+			"projectId": "project0",
+			"archiveId": "",
+			"collectionId": "",
+			"folderId": "",
+			"text": "",
+			"uri": "",
+			"html": "",
+			"incontext": "",
+			"json": "",
+			"tags": "",
+			"created": "",
+			"updated": "",
+			"user": "",
+			"references": "",
+			"group": "",
+			"id": "",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		},
+		"lead1":{
+			"title": "worldcat",
+			"projectId": "project1",
+			"archiveId": "",
+			"collectionId": "",
+			"folderId": "",
+			"text": "",
+			"uri": "",
+			"html": "",
+			"incontext": "",
+			"json": "",
+			"tags": "",
+			"created": "",
+			"updated": "",
+			"user": "",
+			"references": "",
+			"group": "",
+			"id": "",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		},
+		"lead2":{
+			"title": "harvard libraries",
+			"projectId": "project2",
+			"archiveId": "",
+			"collectionId": "",
+			"folderId": "",
+			"text": "",
+			"uri": "",
+			"html": "",
+			"incontext": "",
+			"json": "",
+			"tags": "",
+			"created": "",
+			"updated": "",
+			"user": "",
+			"references": "",
+			"group": "",
+			"id": "",
+			"uid": "5tsuVNj4fnWE4RZOM9WpM1G3RlY2"
+		}
+	},
+	"users":{
+		"user0":{
+			"uid":"5tsuVNj4fnWE4RZOM9WpM1G3RlY2",
+			"displayName":"Zoe",
+			"hypothesisUsername": "zoeleblanc",
+			"hypothesisToken": "6879-1fd25d39c910a19c57d047d7086f32e7",
+			"photoURL": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?dpr=2&auto=format&fit=crop&w=1500&h=1425&q=80&cs=tinysrgb&crop=",
+			"private": false
+		},
+		"user1":{
+			"uid":"oibnNd6kDWOqV6Rfxa7HgO9Pj1k2",
+			"displayName":"",
+			"hypothesisUsername": "opencontent",
+			"hypothesisToken": ""
+			,
+			"photoURL": "",
+			"private": true
+		}
+	}
+}

@@ -1,65 +1,117 @@
-<div class="row">
+<div class="row" ng-repeat="project in nestedProjects | filter: {id: clickProjectId}" class="col s8  align-left">
 	<div class="row">
-		<div ng-repeat="project in projectsArray | filter: {id: clickProjectId}" class="col s8  align-left">
-			<h3>Project Title {{project.title}}</h3>
-		</div>
-	</div>
-	<div class="row">
-		<button class="waves-effect waves-light btn col s4 offset-s2" ng-click="setImportHypothesis()">Import Hypothesis</button>
-		<button class="waves-effect waves-light btn col s4 offset-s1" ng-click="setImportPDF()">Import PDF of Annotations</button>
-	</div>
-	<div class="row">
-		<div ng-show="importHypothesis">
-			<div class="card col s10 offset-s1 blue-grey lighten-5">
-				<div class="input-field col s4">
-				<input type="text" id="any" ng-model="userHypothesis.any">
-				<label for="any">Enter any search term</label>
-				</div>
-				<div class="input-field col s4">
-				<input type="text" id="user" ng-model="userHypothesis.user">
-				<label for="user">Enter any user name</label>
-				</div>
-				<div class="input-field col s4">
-				<input type="text" id="group" ng-model="userHypothesis.group">
-				<label for="group">Enter any group name</label>
-				</div>
-				<div class="input-field col s4">
-				<input type="text" id="tag" ng-model="userHypothesis.tag">
-				<label for="tag">Enter any tag name</label>
-				</div>
-				<div class="input-field col s4">
-				<input type="text" id="url" ng-model="userHypothesis.url">
-				
-				<label for="url">Enter any url</label>
-				</div>
-				<button class="waves-effect waves-light btn col s3 offset-s1" ng-click="searchHypothesis()">Search Hypothesis</button>
+		<div class="card col s10 offset-s1 center-align">
+			<div class="row">
+				<h5>Working on {{project.title}}</h5>
 			</div>
-		</div>
-	</div> <!-- Import Hypothesis -->
-	<!-- Fab -->
-  <div class="fixed-action-btn"> 
-    <a tooltipped class="btn-floating btn-large orange lighten-3" ng-click="selectedAnnotation()" data-position="top" data-delay="50" data-tooltip="Save selected annoations"><i class="large material-icons">check_circle</i>
-    </a>
-  </div> <!-- End of Fab -->
-	<div id="searchAnnotations">
-	    <div ng-show="searchAnnotations.length">
-		    <div ng-repeat="annotation in searchAnnotations">
-		      	<div class="card blue-grey lighten-5 col s8 offset-s2">
-			        <div class="card-content">
-			        	
-	          			<h4 class="card-title">Title: {{annotation.document.title}}</h4>
-	          			<div class="card-action">
-	          			<p ng-show="annotation.text.length">Text: {{annotation.text}}</p>
-	          			<p ng-show="annotation.tags.length">Tags: {{annotation.tags}}</p>
-	          			<a ng-show="annotation.links.html.length" href="{{annotation.links.html}}">Link: {{annotation.links.html}}</a>
-	          			<p ng-show="annotation.user.length">User: {{annotation.user}}</p>
-	          			<p ng-show="annotation.group.length">Group: {{annotation.group}}</p>
-	          			<input type="checkbox" id="{{annotation.id}}" ng-model="annotation.selected"/>
-      					<label for="{{annotation.id}}">Select Annotation</label>
-	          			</div>
-	        		</div>
-		      	</div>
-		    </div>
-	    </div>
+			<div class="divider"></div>
+			<div class="row">
+				<div class="col s5 offset-s1">
+					<a class="waves-effect waves-light btn-flat" ng-click="setImportHypothesis()">Search for Research Leads</a>
+				</div>
+				<div class="col s5 offset-s1">
+					<a class="waves-effect waves-light btn-flat" ng-click="setImportArchives()">Search for Research Archives</a>
+				</div>
+			</div>
+			<div class="row">
+				<div ng-show="importHypothesis">
+					<div class="input-field col s4">
+						<input type="text" id="any" ng-model="userHypothesis.any">
+						<label for="any">Enter any search term</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="user" ng-model="userHypothesis.user">
+						<label for="user">Enter any user name</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="group" ng-model="userHypothesis.group">
+						<label for="group">Enter any group name</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="tag" ng-model="userHypothesis.tag">
+						<label for="tag">Enter any tag name</label>
+					</div>
+					<div class="input-field col s4">
+						<input type="text" id="url" ng-model="userHypothesis.url">
+						<label for="url">Enter any url</label>
+					</div>
+						<div class="input-field col s4">
+						<input type="number" id="limit" ng-model="userHypothesis.limit">
+						<label for="limit">Enter number of results (limit 200)</label>
+					</div>
+					<button class="waves-effect waves-light btn col s3 offset-s1" ng-click="searchHypothesis()">Search Hypothesis</button>
+				</div><!-- Import Hypothesis -->
+				<div ng-show="importArchives">
+					<div class="row">
+						<div class="input-field col s5 offset-s1">
+							<input type="text" id="search" ng-model="searchTerm" ng-keyup="$event.keyCode === 13 && searchArchives(searchTerm)">
+							<label for="search">Search in Archives</label>
+						</div>
+						<button class="waves-effect waves-light btn lighten-1 col s2 offset-s1" ng-click="searchArchives(searchTerm)" style="margin-top: 1em;">SEARCH
+						</button>
+						<button class="waves-effect waves-light btn lighten-1 col s2 offset-s1" ng-click="loadArchives()" style="margin-top: 1em;">LOAD ARCHIVES
+						</button>
+					</div>
+				</div><!-- Import Archives -->
+			</div> <!-- End of row -->
+		</div> <!-- end of card -->
+		<div class="row">
+			<div id="importLeads" ng-show="importHypothesis">
+			    <div ng-show="searchLeads.length">
+				    <div ng-repeat="lead in searchLeads">
+				      	<div class="card col s8 offset-s2">
+					        <div class="card-content">
+			          			<h4 class="card-title">Title: {{lead.document.title}}</h4>
+			          			<div class="card-action">
+				          			<p ng-show="lead.text.length">Text: {{lead.text}}</p>
+				          			<p ng-show="lead.tags.length">Tags: {{lead.tags}}</p>
+				          			<a ng-show="lead.links.html.length" href="{{lead.links.html}}">Link: {{lead.links.html}}</a>
+				          			<p ng-show="lead.user.length">User: {{lead.user}}</p>
+				          			<p ng-show="lead.group.length">Group: {{lead.group}}</p>
+				          			<input type="checkbox" id="{{lead.id}}" ng-model="lead.selected"/>
+			      					<label for="{{lead.id}}">Select Research Lead</label>
+			          			</div>
+			        		</div>
+				      	</div>
+				    </div>
+			    </div>
+			    <!-- Fab -->
+		  		<div class="fixed-action-btn"> 
+		    		<a tooltipped class="btn-floating btn-large pink" ng-click="selectedLeads()" data-position="top" data-delay="50" data-tooltip="Save selected research leads"><i class="large material-icons">check_circle</i>
+		    		</a>
+		  		</div> <!-- End of Fab -->
+		  	</div> <!-- End of import Hypothesis Leads -->
+		  	<div id="importArchives" ng-show="importArchives">
+		  		<div ng-repeat="archive in archiveWiki" ng-show="!filtered.length">
+		  			<div class="card col s8 offset-s2">
+					    <div class="card-content">
+			          		<h4 class="card-title"> {{archive.Archive_Name}}</h4>
+			          		<div class="divider"></div>
+			          		Learn more: <a target="_blank" href="{{archive.Archive_Link}}">{{archive.Archive_Link | limitTo: 50}}</a>
+			          		<p>{{archive.Archive_Info | limitTo: 50}}...</p>
+			          		<input type="checkbox" id="{{archive.id}}" ng-model="archive.selected"/>
+			      			<label for="{{archive.id}}">Select Research Archive</label>
+			          	</div>
+			        </div>
+		  		</div>
+		  		<div ng-repeat="archive in filtered track by $index" ng-show="filtered.length">
+		  			<div class="card col s8 offset-s2">
+					    <div class="card-content" id="{{archive.id}}">
+			          		<h4 class="card-title"> {{archive.Archive_Name}}</h4>
+			          		<div class="divider"></div>
+			          		Learn more: <a target="_blank" href="{{archive.Archive_Link}}">{{archive.Archive_Link | limitTo: 50}}</a>
+			          		<p>{{archive.Archive_Info | limitTo: 50}}...</p>
+			          		<input type="checkbox" id="{{archive.id}}" ng-model="archive.selected"/>
+			      			<label for="{{archive.id}}">Select Research Archive</label>
+			          	</div>
+			        </div>
+		  		</div>
+		  		<!-- Fab -->
+		  		<div class="fixed-action-btn"> 
+		    		<a tooltipped class="btn-floating btn-large purple" ng-click="selectedArchives()" data-position="top" data-delay="50" data-tooltip="Save selected research archives"><i class="large material-icons">check_circle</i>
+		    		</a>
+		  		</div> <!-- End of Fab -->
+		  	</div> <!-- End of import Archives -->
+		</div> <!-- End of row -->
   	</div>
 </div>

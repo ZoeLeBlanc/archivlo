@@ -1,3 +1,4 @@
+@import 'variables';
 #dropdown {
 	z-index: 1;
 }
@@ -14,13 +15,56 @@
 // background: linear-gradient(to left, #6190E8 , #A7BFE8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         
 }
-
+.btn {
+  background-color: $accent-color;
+}
+.btn:hover {
+  background-color: $primary-color-light;
+}
+.btn:focus {
+  background-color: $primary;
+}
+input[type=email]:focus:not([readonly]) {
+  border-bottom: 1px solid $accent-color;
+    box-shadow: 0 1px 0 0 $accent-color;
+}
+input[type=password]:focus:not([readonly]) {
+  border-bottom: 1px solid $accent-color;
+    box-shadow: 0 1px 0 0 $accent-color;
+}
+input[type=text]:focus:not([readonly]) {
+  border-bottom: 1px solid $accent-color;
+    box-shadow: 0 1px 0 0 $accent-color;
+}
+.switch label input[type=checkbox]:checked+.lever {
+    background-color: $accent-color;
+}
+.switch label input[type=checkbox]:checked+.lever:after{
+  background-color: #f3999d;
+}
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
+    color: $accent-color;
+}
+a {
+    color: $primary;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:after {
+  background-color: $accent-color;
+}
+[type="radio"]:checked+label:after, [type="radio"].with-gap:checked+label:before, [type="radio"].with-gap:checked+label:after {
+  border: 2px solid $accent-color;
+}
+.chips.focus{
+  border-bottom: 1px solid $accent-color;
+  box-shadow: 0 1px 0 0 $accent-color;
+}
 #sidenav-overlay {
 	display:none;
 }
 #user-avatar {
 	// border-radius: 99%;
   object-fit: cover;
+  width: 10em;
 }
 .card.horizontal .card-image {
   max-width: 60%;
@@ -60,4 +104,18 @@
 * + html .btn-upload {
   padding: 2px 15px;
   margin: 1px 0 0 0;
+}
+.star {
+    visibility:hidden;
+    font-size:30px;
+    cursor:pointer;
+}
+.star:before {
+   content: "\2605";
+   position: absolute;
+   visibility:visible;
+}
+.star:checked:before {
+   content: "\2606";
+   position: absolute;
 }

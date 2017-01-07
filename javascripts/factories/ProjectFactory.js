@@ -27,7 +27,9 @@ app.factory("ProjectFactory", function($q, $http, FIREBASE_CONFIG){
 				dateCreated: newProject.dateCreated,
 				dateUpdated: newProject.dateUpdated,
 				private: newProject.private,
-				uid: newProject.uid
+				uid: newProject.uid,
+				coverPhoto: newProject.coverPhoto,
+				statusId: newProject.statusId
 				})
 			)
 			 .success( (postResponse)=>{
@@ -70,7 +72,9 @@ app.factory("ProjectFactory", function($q, $http, FIREBASE_CONFIG){
 				dateCreated: editProject.dateCreated,
 				dateUpdated: editProject.dateUpdated,
 				private: editProject.private,
-				uid: editProject.uid
+				uid: editProject.uid,
+				coverPhoto: editProject.coverPhoto,
+				statusId: editProject.statusId
 				})
 			)
 			 .success( (editResponse)=>{
@@ -81,5 +85,22 @@ app.factory("ProjectFactory", function($q, $http, FIREBASE_CONFIG){
 			 });
 		});
 	};
-	return {getProjectList, postNewProject, deleteProject, getSingleProject, editProject};
+	//Firebase: get all Items
+	var getAllProjectList = function(userId){
+		return $q((resolve, reject)=>{
+			$http.get(`${FIREBASE_CONFIG.databaseURL}/projects.json`)
+			 .success( (response)=>{
+			 	let projects = [];
+			 	Object.keys(response).forEach((key)=>{
+			 		response[key].id = key;
+			 		projects.push(response[key]);
+			 	});
+			 	resolve(projects);
+			 })
+			 .error( (errorResponse)=>{
+			 	reject(errorResponse);
+			 });
+		});
+	};
+	return {getProjectList, postNewProject, deleteProject, getSingleProject, editProject, getAllProjectList};
 });

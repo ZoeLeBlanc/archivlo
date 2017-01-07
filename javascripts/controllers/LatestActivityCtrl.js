@@ -1,6 +1,16 @@
 "use strict";
-app.controller("LatestActivityCtrl", function($scope, $rootScope, $timeout, StorageFactory, UserFactory, ProjectFactory, AnnotationFactory, HypothesisFactory){
-	$('.chips').material_chip();
+app.controller("LatestActivityCtrl", function($scope, $rootScope, $timeout, StorageFactory, UserFactory, ProjectFactory, HypothesisFactory){
+	$scope.hypothesisOptions = ["any", "user", "group", "tag", "url"];
+
+	$('.chips-initial').material_chip({
+	    data: [{
+	      tag: 'Apple',
+	    }, {
+	      tag: 'Microsoft',
+	    }, {
+	      tag: 'Google',
+	    }],
+	  });
 	var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
  	var today = (new Date()).getDay();
  	$scope.sortedList = weekdays.slice(today).concat(weekdays.slice(0,today));
@@ -34,29 +44,39 @@ app.controller("LatestActivityCtrl", function($scope, $rootScope, $timeout, Stor
 	      ]
 	    }
  	};
- 	$scope.searchHypothesis = function(){
-		$scope.searchAnnotations = {};
-		$scope.newSearch = "search?";
-		angular.forEach($scope.userHypothesis, function(value, key){
-			$scope.newSearch += key+ '='+value + "&";
+ 	$scope.searchHypothesis = function(searchTerms, searchProp){
+		$scope.HypothesisData = [];
+		angular.forEach(searchTerms, function(value, key){
+			$scope.searchAnnotations = {};
+			$scope.newSearch = "search?";
+			$scope.newSearch += searchProp+ '='+value + "&";
+			$scope.newSearch = $scope.newSearch.slice(0, -1);
+			console.log("value", $scope.newSearch);
+			HypothesisFactory.searchHypothesis($scope.newSearch).then( (searchResponse)=>{
+				$scope.searchAnnotations = searchResponse[0];
+				console.log($scope.searchAnnotations);
+				$scope.HypothesisData.push($scope.searchAnnotations);
+				// angular.forEach(searchResponse, function(value,key){
+				// 	console.log("searchResponse", value);
+				// 	value;
+				// });
+				console.log($scope.HypothesisData);	
+	 		});
+	 		console.log($scope.HypothesisData);
 		});
-		$scope.newSearch = $scope.newSearch.slice(0, -1);
-		console.log("value", $scope.newSearch);
-		HypothesisFactory.searchHypothesis($scope.newSearch).then( (searchResponse)=>{
-			$scope.searchAnnotations = searchResponse[0];
-			console.log($scope.searchAnnotations);
-			// angular.forEach(searchResponse, function(value,key){
-			// 	console.log("searchResponse", value);
-			// 	value;
-			// });	
- 		$scope.userHypothesis = {};
- 		});
+		console.log($scope.HypothesisData);
  	};
- 	$scope.getChips = ()=>{
+ 	$scope.getSearchies = ()=>{
+ 		$scope.searchedTerms = [];
+ 		console.log("selectedOption", $scope.selectedOption);
  		var data = $('#searchChips').material_chip('data');
  		angular.forEach(data, (value, index)=>{
  			console.log("data", data[index].tag);
+ 			$scope.searchedTerms.push(data[index].tag);
+ 			console.log($scope.searchedTerms);
  		});	
+ 		$scope.searchHypothesis($scope.searchedTerms, $scope.selectedOption);
+ 		$scope.searchedTerms = [];
+ 		$scope.searchTerms = "";
  	};
- 	
 });
