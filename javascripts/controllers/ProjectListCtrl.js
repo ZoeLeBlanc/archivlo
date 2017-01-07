@@ -11,11 +11,9 @@ app.controller("ProjectListCtrl", function($scope, $rootScope, $timeout, $q, Sto
 	}
 	function getModal(){
 		$timeout(function() {
-			// console.log("modal trigger", angular.element('#modalTrigger'));
 			angular.element('#modalTrigger').triggerHandler('click');
 			$scope.openModal = true;
 			$rootScope.registering = false;
-			// console.log("registering", $rootScope.registering);
 		});	
 	}
 	if ($scope.userImage){
@@ -125,9 +123,6 @@ app.controller("ProjectListCtrl", function($scope, $rootScope, $timeout, $q, Sto
 		});
 	};
 	$rootScope.nestData();
-	$scope.duplicateProject = function(index){
-		console.log("project", index);
-	};
 	$scope.deleteProject = function(projectId){
 		ProjectFactory.deleteProject(projectId).then( (deleteResponse)=>{
 			// ProjectFactory.getProjectList($rootScope.user.uid).then( (projects)=>{
@@ -244,4 +239,60 @@ app.controller("ProjectListCtrl", function($scope, $rootScope, $timeout, $q, Sto
 	$scope.getArray=(projectId)=>{
 		return getProjectData(projectId);
 	};
+	//DUPLICATE PROJECT
+	$scope.duplicateProject = (projectId)=>{
+
+		angular.forEach($scope.projects, function(project, index){
+			if (project.id === projectId){
+				console.log(project);
+				let duplicateProject = {
+					uid: project.uid,
+					title: project.title,
+					statusId: project.statusId,
+					private: project.private,
+					description: project.description,
+					dateUpdated: project.dateUpdated,
+					dateCreated: project.dateCreated,
+					coverPhoto: project.coverPhoto
+				};
+				console.log(duplicateProject);
+				// duplicateProject.id = projects.length + 1;
+				ProjectFactory.postNewProject(duplicateProject).then( (postResponse)=>{
+
+				});
+			}
+
+		});
+		angular.forEach($scope.tags, (tag, index)=>{
+			if (projectId === tag.projectId){
+				console.log(tag);
+				TagFactory.postNewTag(tag).then( (postResponse)=>{
+
+				});
+			}
+		});
+		angular.forEach($scope.userArchives, (userArchive, index)=>{
+			if (projectId === userArchive.projectId){
+				UserArchiveFactory.postNewUserArchive(userArchive).then((postResponse)=>{
+
+				});
+			}
+		});
+		angular.forEach($scope.leads, (lead, index)=>{
+			if (projectId === lead.projectId){
+				LeadFactory.postNewLead(lead).then((postResponse)=>{
+
+				});
+			}
+		});
+		angular.forEach($scope.notes, (note, index)=>{
+			if (projectId === note.projectId){
+				NoteFactory.postNewNote(note).then((postResponse)=>{
+
+				});
+			}
+		});
+		$rootScope.nestData();
+	};
+
 });

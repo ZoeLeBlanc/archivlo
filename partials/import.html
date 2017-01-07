@@ -1,8 +1,9 @@
 <div class="row" ng-repeat="project in nestedProjects | filter: {id: clickProjectId}" class="col s8  align-left">
 	<div class="row">
-		<div class="card col s10 offset-s1 center-align">
+		<div class="card col s10 offset-s1 left-align">
 			<div class="row">
-				<h5>Working on {{project.title}}</h5>
+				<h5 class="col s8 offset-s1">Working on {{project.title}}</h5>
+				<button class="waves-effect waves-light btn col s2 offset-s1 right-align indigo accent-1" style="margin-top: 1em;" ng-click="finishedWorking()">Save Project</button>
 			</div>
 			<div class="divider"></div>
 			<div class="row">

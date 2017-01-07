@@ -3,25 +3,6 @@ app.controller("ProjectViewCtrl", function($scope, $rootScope, $routeParams, Pro
 	$scope.clickProjectId = $routeParams.id;
 	console.log("$scope.clickProjectId", $scope.clickProjectId);
 	console.log("nested Projects", $rootScope.nestedProjects);
-	// let tagData = [];
-	// let chipData = [];
-
-	// angular.forEach($rootScope.nestedProjects, function(project,index){
-	// 	if(project.id === $scope.clickProjectId){
-	// 		tagData = project.tags;
-	// 		console.log(tagData);
-	// 		angular.forEach(tagData, function(tag, index){
-	// 			chipData.push({tag:'${tag.tag}'});
-	// 		});
-	// 	}
-	// });
-	
-	// $scope.getChips();
-
-	// function initializeChips(){
-	// 	console.log("chipData",chipData);
-	//   $('.chips-initial').material_chip();
-	// }
 	$scope.editVersion = false;
 	// LEAD FUNCTIONS
 	$scope.deleteLead = function(){

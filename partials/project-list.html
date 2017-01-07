@@ -134,7 +134,7 @@
               <a ng-href="#/projects/edit/{{project.id}}">Edit</a>
               <a href="" ng-click="duplicateProject($index)">Duplicate</a>
               <a href="" ng-click="deleteProject(project.id)">Delete</a>
-              <a href="" ng-click="downloadProject(project.id)">Download</a>
+              <a href="" ng-click="downloadProject(project.id)" ng-csv="getArray()" csv-header="getHeader()" filename="{{project.id}}" field-separator="separator" decimal-separator="decimalSeparator">Download</a>
             </div>
           </div>
         </div>
@@ -159,7 +159,7 @@
               <a ng-href="#/projects/edit/{{project.id}}">Edit</a>
               <a href="" ng-click="duplicateProject(project.id)">Duplicate</a>
               <a href="" ng-click="deleteProject(project.id)">Delete</a>
-              <a href="" ng-click="downloadProject(project.id)" ng-csv="getArray()" csv-header="getHeader()" filename="filename" field-separator="separator" decimal-separator="decimalSeparator">Download</a>
+              <a href="" ng-click="downloadProject(project.id)" ng-csv="getArray()" csv-header="getHeader()" filename="{{project.id}}" field-separator="separator" decimal-separator="decimalSeparator">Download</a>
             </div>
           </div>
       </div>
@@ -183,7 +183,7 @@
               <a ng-href="#/projects/edit/{{project.id}}">Edit</a>
               <a href="" ng-click="duplicateProject(project.id)">Duplicate</a>
               <a href="" ng-click="deleteProject(project.id)">Delete</a>
-              <a href="" ng-click="downloadProject(project.id)">Download</a>
+              <a href="" ng-click="downloadProject(project.id)" ng-csv="getArray()" csv-header="getHeader()" filename="{{project.id}}" field-separator="separator" decimal-separator="decimalSeparator">Download</a>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 "use strict";
 app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, $location, ImportFactory, HypothesisFactory, LeadFactory, ArchiveWikiFactory, UserArchiveFactory){
+	$scope.userHypothesis = {};
 	$scope.loadArchives = ()=>{
 		$rootScope.archiveWiki = [];
 		ArchiveWikiFactory.getArchiveWikiList().then( (archiveWikiResponse)=>{
@@ -29,9 +30,11 @@ app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, $locatio
 	$scope.searchHypothesis = function(){
 		$scope.searchLeads = {};
 		$scope.newSearch = "search?";
+		console.log($scope.userHypothesis);
 		angular.forEach($scope.userHypothesis, function(value, key){
 			$scope.newSearch += key+ '='+value + "&";
 		});
+		console.log("value", $scope.newSearch);
 		$scope.newSearch = $scope.newSearch.slice(0, -1);
 		console.log("value", $scope.newSearch);
 		HypothesisFactory.searchHypothesis($scope.newSearch).then( (searchResponse)=>{
@@ -71,7 +74,7 @@ app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, $locatio
 	 		console.log("newLead", newLead);
 	 		LeadFactory.postNewLead(newLead).then( (postNewResponse)=>{
 					console.log("postNewResponse", postNewResponse);
-				$location.url('/projects/list');
+				
 			});
 		});
 	};
@@ -111,9 +114,11 @@ app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, $locatio
 	 		console.log("newArchive", newArchive);
 	 		UserArchiveFactory.postNewUserArchive(newArchive).then( (postNewResponse)=>{
 					console.log("postNewResponse", postNewResponse);
-				$location.url('/projects/list');
+				
 			});
 		});
 	};
-
+	$scope.finishedWorking = ()=>{
+		$location.url('/projects/list');
+	};
 });

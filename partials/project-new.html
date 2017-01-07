@@ -1,7 +1,8 @@
 <div class="row">
 	<div class="card col s10 offset-s1">
 		<div class="row">
-			<h4 class="center-align">Create New Project</h4>
+			<h4 ng-show="!editing" class="center-align">Create New Project</h4>
+			<h4 ng-show="editing" class="center-align">Edit Project</h4>
 		</div>
 		<div class="divider"></div>
 		<div class="row col s10 offset-s1">
@@ -30,7 +31,7 @@
 			        <div ng-show="!editing" class="chips" id="createProjectTags">
 			          <input id="search" ng-model="createProject.tags">
 			       	</div>
-			       	<div ng-show="editing" class="chips-initial" id="editProjectTags">
+			       	<div ng-show="editing" class="chips chips-initial" id="editProjectTags">
 			          <input id="search" ng-model="createProject.tags">
 			       	</div>
 			    </div>
