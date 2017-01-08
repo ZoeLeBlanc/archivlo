@@ -258,41 +258,46 @@ app.controller("ProjectListCtrl", function($scope, $rootScope, $timeout, $q, Sto
 				console.log(duplicateProject);
 				// duplicateProject.id = projects.length + 1;
 				ProjectFactory.postNewProject(duplicateProject).then( (postResponse)=>{
+					console.log(postResponse);
+					angular.forEach($scope.tags, (tag, index)=>{
+						if (projectId === tag.projectId){
+							console.log(tag);
+							tag.projectId = postResponse.name;
+							TagFactory.postNewTag(tag).then( (postResponse)=>{
 
+							});
+						}
+					});
+					angular.forEach($scope.userArchives, (userArchive, index)=>{
+						if (projectId === userArchive.projectId){
+							userArchive.projectId = postResponse.name;
+							UserArchiveFactory.postNewUserArchive(userArchive).then((postResponse)=>{
+
+							});
+						}
+					});
+					angular.forEach($scope.leads, (lead, index)=>{
+						if (projectId === lead.projectId){
+							lead.projectId = postResponse.name;
+							LeadFactory.postNewLead(lead).then((postResponse)=>{
+
+							});
+						}
+					});
+					angular.forEach($scope.notes, (note, index)=>{
+						if (projectId === note.projectId){
+							note.projectId = postResponse.name;
+							NoteFactory.postNewNote(note).then((postResponse)=>{
+
+							});
+						}
+					});
+					$rootScope.nestData();
 				});
 			}
 
 		});
-		angular.forEach($scope.tags, (tag, index)=>{
-			if (projectId === tag.projectId){
-				console.log(tag);
-				TagFactory.postNewTag(tag).then( (postResponse)=>{
-
-				});
-			}
-		});
-		angular.forEach($scope.userArchives, (userArchive, index)=>{
-			if (projectId === userArchive.projectId){
-				UserArchiveFactory.postNewUserArchive(userArchive).then((postResponse)=>{
-
-				});
-			}
-		});
-		angular.forEach($scope.leads, (lead, index)=>{
-			if (projectId === lead.projectId){
-				LeadFactory.postNewLead(lead).then((postResponse)=>{
-
-				});
-			}
-		});
-		angular.forEach($scope.notes, (note, index)=>{
-			if (projectId === note.projectId){
-				NoteFactory.postNewNote(note).then((postResponse)=>{
-
-				});
-			}
-		});
-		$rootScope.nestData();
+		
 	};
 
 });

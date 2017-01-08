@@ -43,10 +43,10 @@ app.controller("AuthCtrl", function($location, $scope, $rootScope, AuthFactory, 
 		});
 	};
 
-	let loginSetUser = {};
-	loginSetUser.email = "a@a.com";
-	loginSetUser.password = "123456";
-	logMeIn(loginSetUser);
+	// let loginSetUser = {};
+	// loginSetUser.email = "a@a.com";
+	// loginSetUser.password = "123456";
+	// logMeIn(loginSetUser);
 	$scope.setUser = function(userResponse){
 		console.log("userResponseuid", userResponse.uid);
 		UserFactory.checkUser(userResponse).then( (checkUserResponse)=>{
