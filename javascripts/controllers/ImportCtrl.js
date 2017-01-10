@@ -39,11 +39,15 @@ app.controller("ImportCtrl", function($scope, $rootScope, $routeParams, $locatio
 		console.log("value", $scope.newSearch);
 		HypothesisFactory.searchHypothesis($scope.newSearch).then( (searchResponse)=>{
 			$scope.searchLeads = searchResponse[0];
-			console.log($scope.searchLeads);
-			// angular.forEach(searchResponse, function(value,key){
-			// 	console.log("searchResponse", value);
-			// 	value;
-			// });	
+
+		
+			angular.forEach($scope.searchLeads, (lead, index)=>{
+				console.log("lead test", lead.id);
+				HypothesisFactory.getHypothesisJSON(lead).then( (response)=>{
+					console.log(response);
+				});
+			});
+			// 
  			$scope.userHypothesis = {};
  		});
 	};

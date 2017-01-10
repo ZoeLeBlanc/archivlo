@@ -52,7 +52,7 @@ a {
   box-shadow: 0 1px 0 0 #ee6e73; }
 
 #sidenav-overlay {
-  display: none; }
+  z-index: 1; }
 
 #user-avatar {
   object-fit: cover;

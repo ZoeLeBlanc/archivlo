@@ -21,7 +21,7 @@ app.factory("HypothesisFactory", function($q, $http, HYPOTHESIS_TOKEN){
 			});
 		});
 	};
-	var getHypothesisJson = (oneAnnotation)=>{
+	var getHypothesisJSON = (oneAnnotation)=>{
 		return $q((resolve,reject)=>{
 			$http.get(`https://hypothes.is/api/annotations/${oneAnnotation.id}`, {
 				headers: {
@@ -38,5 +38,5 @@ app.factory("HypothesisFactory", function($q, $http, HYPOTHESIS_TOKEN){
 			});
 		});
 	};
-	return {searchHypothesis, getHypothesisJson};
+	return {searchHypothesis, getHypothesisJSON};
 });
