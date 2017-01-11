@@ -64,7 +64,8 @@
 					        <div class="card-content">
 			          			<h4 class="card-title">Title: {{lead.document.title}}</h4>
 			          			<div class="card-action">
-				          			<p ng-show="lead.text.length">Text: {{lead.text}}</p>
+				          			<p ng-show="lead.text.length">Comment: {{lead.text}}</p>
+				          			<p ng-show="lead.target.selector[1].exact.length">Comment: {{lead.target.selector[1].exact}}</p>
 				          			<p ng-show="lead.tags.length">Tags: {{lead.tags}}</p>
 				          			<a ng-show="lead.links.html.length" href="{{lead.links.html}}">Link: {{lead.links.html}}</a>
 				          			<p ng-show="lead.user.length">User: {{lead.user}}</p>

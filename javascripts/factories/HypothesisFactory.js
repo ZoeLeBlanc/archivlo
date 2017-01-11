@@ -23,10 +23,10 @@ app.factory("HypothesisFactory", function($q, $http, HYPOTHESIS_TOKEN){
 	};
 	var getHypothesisJSON = (oneAnnotation)=>{
 		return $q((resolve,reject)=>{
-			$http.get(`https://hypothes.is/api/annotations/${oneAnnotation.id}`, {
+			$http.get(`https://hypothes.is/api/annotations/${oneAnnotation.id}`
+				, {
 				headers: {
 					'Authorization': 'Bearer ' +HYPOTHESIS_TOKEN.Authorization,
-					
 				}
 			})
 			.success( (getHypothesisJSONResponse)=>{
